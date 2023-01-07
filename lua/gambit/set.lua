@@ -38,4 +38,14 @@ vim.opt.isfname:append("@-@")
 -- fast update time
 vim.opt.updatetime = 50
 
+-- 80 width column to remind not have too much on one line
 vim.opt.colorcolumn = "80"
+
+-- highlight all matches on previous serach patterns
+vim.opt.hlsearch = false
+
+-- ignore case in search patterns Vim
+vim.opt.ignorecase = true
+
+-- highlight the current line
+vim.opt.cursorline = true

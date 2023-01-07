@@ -63,4 +63,7 @@ return require('packer').startup(function(use)
             vim.cmd('colorscheme everforest')
         end
     })
+
+    -- autopairs
+    use('windwp/nvim-autopairs')
 end)
