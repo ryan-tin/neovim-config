@@ -74,4 +74,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { silent = true })
 
 -- buffers
-vim.keymap.set("n", "<leader>b", ":buffers<CR>:b<Space>", { silent = true })
+vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { silent = true })
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<leader>c", "<cmd>bd!<CR>", { silent = true })

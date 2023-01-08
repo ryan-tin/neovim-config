@@ -68,4 +68,14 @@ return require('packer').startup(function(use)
 
     -- autopairs, auto closing pairs
     use('windwp/nvim-autopairs')
+
+    -- bufferline (taps on top)
+    use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+    require("bufferline").setup{}
+
+    -- status line below
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
 end)
