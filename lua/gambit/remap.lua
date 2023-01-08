@@ -68,12 +68,28 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 -- using leader s will let us replace the word we are on
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- makes script (Prime used bash script as the example in the video) into an executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- use <leader>e to toggle open nvimtree
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { silent = true })
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { silent = true })
 
 -- buffers
 vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })
-vim.keymap.set("n", "<leader>c", "<cmd>bd!<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { silent = true })
+
+-- movements
+vim.keymap.set("n", "H", "^")
+vim.keymap.set("n", "L", "$")
+
+-- cd to directory of current file
+vim.keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>")
+
+-- no hilight
+vim.keymap.set("n", "<leader><space>", ":noh<CR>", { silent = true })
+
+-- git 
+vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { silent = true })
+
+-- save
+vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })

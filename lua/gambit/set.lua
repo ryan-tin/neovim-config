@@ -43,7 +43,7 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = ""
 
 -- highlight all matches on previous serach patterns
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 
 -- ignore case in search patterns Vim
 vim.opt.ignorecase = true
