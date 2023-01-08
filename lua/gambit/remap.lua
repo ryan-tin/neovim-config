@@ -9,7 +9,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- J takes the line below and appends to current line with a space 
+-- J takes the line below and appends to current line with a space
 -- this one is the same but allows cursor to remain in the same place.
 vim.keymap.set("n", "J", "mzJ`z")
 
@@ -40,13 +40,13 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
 -- use <leader>y to yank contents into clipboard so that it can be pasted outside of vim.
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- deleting to void register
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- This is going to get me cancelled
+-- jk to escape
 vim.keymap.set("i", "jk", "<Esc>")
 
 -- what does this do?
@@ -55,6 +55,8 @@ vim.keymap.set("n", "Q", "<nop>")
 
 -- not sure what this does, but it uses tmux
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- quick format page
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- quick fix navigation
@@ -65,8 +67,11 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- using leader s will let us replace the word we are on
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
--- makes thing (Prime used bash script as the example in the video) into an executable
+-- makes script (Prime used bash script as the example in the video) into an executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- use <leader>e to toggle open nvimtree
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { silent = true })
+
+-- buffers
+vim.keymap.set("n", "<leader>b", ":buffers<CR>:b<Space>", { silent = true })

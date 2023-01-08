@@ -17,6 +17,8 @@ return require('packer').startup(function(use)
     use('ThePrimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
+
+    -- lsp
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -64,6 +66,6 @@ return require('packer').startup(function(use)
         end
     })
 
-    -- autopairs
+    -- autopairs, auto closing pairs
     use('windwp/nvim-autopairs')
 end)

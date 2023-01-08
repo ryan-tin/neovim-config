@@ -39,7 +39,8 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 -- 80 width column to remind not have too much on one line
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = ""
 
 -- highlight all matches on previous serach patterns
 vim.opt.hlsearch = false
@@ -49,3 +50,6 @@ vim.opt.ignorecase = true
 
 -- highlight the current line
 vim.opt.cursorline = true
+
+-- allow mouse
+vim.opt.mouse = "a"
