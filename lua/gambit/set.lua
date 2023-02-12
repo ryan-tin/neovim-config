@@ -39,8 +39,8 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 -- 80 width column to remind not have too much on one line
--- vim.opt.colorcolumn = "80"
-vim.opt.colorcolumn = ""
+vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "" -- uncomment this to remove line
 
 -- highlight all matches on previous serach patterns
 vim.opt.hlsearch = true
