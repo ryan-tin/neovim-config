@@ -6,7 +6,7 @@
 -- 
 -- lsp.setup()
 
--- THIS IS PRIMEAGEN's CONFIG --
+-- THIS IS PRIMEAGEN's CONFIG BELOW --
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
@@ -14,14 +14,15 @@ lsp.preset("recommended")
 lsp.ensure_installed({
   'tsserver', -- typescript
   'eslint', -- javascript
-  'sumneko_lua', -- lua
+  'lua_ls', -- lua
   'rust_analyzer', -- rust
   'jdtls', -- java
-  'pyright' -- pythong
+  'pyright', -- python
+  'clangd' -- C and C++
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
@@ -72,8 +73,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
   vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
