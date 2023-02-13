@@ -81,6 +81,9 @@ vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { silent = true })
 -- movements
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
+vim.keymap.set("v", "H", "^")
+vim.keymap.set("v", "L", "$")
+-- vim.keymap.set("n", "<CR>", "G") -- useful for jumping using line numbers?
 
 -- cd to directory of current file
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>")
