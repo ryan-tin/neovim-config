@@ -48,6 +48,9 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- jk to escape
 vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "KJ", "<Esc>")
+-- COLEMAK escape
+-- vim.keymap.set("i", "en", "<Esc>")
 
 -- what does this do?
 -- Primeagan says never to use Q
@@ -96,3 +99,6 @@ vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { silent = true })
 
 -- save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
+
+-- toggle markdown preview
+--vim.keymap.set("n", "<C-m>", ":MarkdownPreviewToggle<CR>", {silent = true})
