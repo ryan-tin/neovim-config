@@ -15,7 +15,7 @@ lsp.ensure_installed({
   'tsserver', -- typescript
   'eslint', -- javascript
   'lua_ls', -- lua
-  'rust_analyzer', -- rust
+  --'rust_analyzer', -- rust
   'jdtls', -- java
   'pyright', -- python
   'clangd' -- C and C++
@@ -64,21 +64,22 @@ lsp.set_preferences({
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
-  if client.name == "eslint" then
-      vim.cmd.LspStop('eslint')
-      return
-  end
+  -- TODO this is stopping it from working in javascript?
+  --if client.name == "eslint" then
+  --    vim.cmd.LspStop('eslint')
+  --    return
+  --end
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts) -- search for a symbol
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts) -- code actions are "quick fixes", whenver you see an error message with (fix available), use this command..
   vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts) -- quickly rename a symbol
+  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts) -- help with function signature, in insert mode.
 end)
 
 lsp.setup()
