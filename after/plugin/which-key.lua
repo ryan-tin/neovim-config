@@ -46,7 +46,9 @@ wk.setup {
         border = "none", -- none, single, double, shadow
         position = "bottom", -- bottom, top
         margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+        -- margin = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
         padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
+        -- padding = { 0, 0, 0, 0 }, -- extra window padding [top, right, bottom, left]
         winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
     },
     layout = {
@@ -87,3 +89,48 @@ wk.setup {
         filetypes = {},
     },
 }
+
+-- test
+-- document and/or setup your own mappings
+wk.register({
+    ["<leader>"] = {
+        ["<space>"] = "highlight",
+        a = "aerial",
+        b = "buffers",
+        -- ["c"] = "which_key_ignore", -- don't know what this is mapped to
+        d = "delete to void",
+        e = "nvimtree",
+        f = {
+            name = "fuzzy",
+            f = "find file",
+            s = "grep",
+            h = "help",
+        },
+        g = {
+            name = "git",
+            s = { "status" },
+            d = { "diff" },
+        },
+        i = "harpoon file",
+        j = "quick fix idk",
+        k = "quick fix idk",
+        l = {
+            name = "lsp",
+            a = "code action",
+            d = "diagnostic",
+            s = "symbols",
+            r = "references",
+            n = "rename"
+        },
+        p = "paste & delete to void",
+        s = "rename",
+        u = "undo tree",
+        w = "save",
+        x = "close buffer",
+        Y = "yank line to clipboard",
+        y = "yank to clipboard",
+    },
+    ["g"] = {
+        d = "function definition"
+    }
+})
