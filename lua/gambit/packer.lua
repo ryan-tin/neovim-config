@@ -1,7 +1,7 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+-- vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
@@ -56,13 +56,14 @@ return require('packer').startup(function(use)
 
     -- colorschemes
     use('rose-pine/neovim')
-    use({
-        'sainnhe/everforest',
-        as = 'everforest',
-        config = function()
-            vim.cmd('colorscheme everforest')
-        end
-    })
+    -- use({
+    --     'sainnhe/everforest',
+    --     as = 'everforest',
+    --     config = function()
+    --         vim.cmd('colorscheme everforest')
+    --     end
+    -- })
+    use('sainnhe/everforest')
 
     -- autopairs, auto closing pairs
     use('windwp/nvim-autopairs')
@@ -77,11 +78,32 @@ return require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-    -- install without yarn or npm
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use('nvim-treesitter/playground')
+
+    use {
+        "akinsho/toggleterm.nvim", tag = '*', config = function()
+        require("toggleterm").setup()
+        end
+    }
+
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
 end)
