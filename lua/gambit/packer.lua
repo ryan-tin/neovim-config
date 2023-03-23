@@ -1,7 +1,7 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
--- vim.cmd [[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
@@ -94,16 +94,32 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- display popup of key bindings
     use {
         "folke/which-key.nvim",
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
             require("which-key").setup()
-            -- require("which-key").setup {
-            --     -- your configuration comes here
-            --     -- or leave it empty to use the default settings
-            -- }
         end
     }
+
+    -- surround selections
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup()
+        end
+    })
+
+    -- a code outline window for skimming and quick navigation
+    use {
+        'stevearc/aerial.nvim',
+        config = function()
+            require('aerial').setup()
+        end
+    }
+
+
 end)
