@@ -132,5 +132,21 @@ wk.register({
     },
     ["g"] = {
         d = "function definition"
+    },
+    ["c"] = {
+        name = "change",
+        b = {
+            name = "branch",
+            ["<space>"] = "Populate command line with \":Git branch \"",
+            ["<CR>"] = "Run :Git branch command",
+            ["?"] = "help"
+        },
+        o = {
+            name = "checkout",
+            o = "check out commit under the cursor",
+            ["<space>"] = "Populate command line with \":Git checkout \"",
+            ["<CR>"] = "Run :Git checkout command",
+            ["?"] = "help"
+        }
     }
 })
