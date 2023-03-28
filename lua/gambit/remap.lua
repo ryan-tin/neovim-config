@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- move functionality to move selected text up and down lines.
 -- it will automatically indent and deindent if its to be moved inside an if statement
