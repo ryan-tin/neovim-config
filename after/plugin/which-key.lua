@@ -102,6 +102,7 @@ wk.register({
         e = "nvimtree",
         f = {
             name = "fuzzy (telescope)",
+            a = "aerial",
             f = "find file",
             s = "grep",
             h = "help",
