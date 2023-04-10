@@ -105,7 +105,8 @@ wk.register({
             f = "find file",
             s = "grep",
             h = "help",
-            d = "diagnostics"
+            d = "diagnostics",
+            r = "resume"
         },
         g = {
             name = "git",
