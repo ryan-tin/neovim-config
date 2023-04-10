@@ -43,7 +43,7 @@ wk.setup {
         scroll_up = "<c-u>", -- binding to scroll up inside the popup
     },
     window = {
-        border = "none", -- none, single, double, shadow
+        border = "single", -- none, single, double, shadow
         position = "bottom", -- bottom, top
         margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
         -- margin = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
@@ -101,10 +101,11 @@ wk.register({
         d = "delete to void",
         e = "nvimtree",
         f = {
-            name = "fuzzy",
+            name = "fuzzy (telescope)",
             f = "find file",
             s = "grep",
             h = "help",
+            d = "diagnostics"
         },
         g = {
             name = "git",
