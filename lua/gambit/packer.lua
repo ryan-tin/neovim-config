@@ -70,7 +70,7 @@ return require('packer').startup(function(use)
 
     -- bufferline (taps on top)
     use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
-    require("bufferline").setup{}
+    require("bufferline").setup()
 
     -- status line below
     use {
