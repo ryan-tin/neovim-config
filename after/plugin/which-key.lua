@@ -100,20 +100,21 @@ wk.register({
         c = {
             name = "cd",
             d = "cd",
-            c = "configs (telescope)",
             p = "planner",
-            v = "vault (telescope)"
         },
         d = "delete to void",
         e = "nvimtree",
         f = {
             name = "fuzzy (telescope)",
             a = "aerial",
+            c = "configs",
             f = "find file",
-            s = "grep",
+            s = "search (grep)",
             h = "help",
             d = "diagnostics",
-            r = "resume"
+            r = "resume",
+            i = "implementations",
+            v = "vault"
         },
         g = {
             name = "git",
