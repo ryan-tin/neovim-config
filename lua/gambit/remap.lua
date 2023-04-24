@@ -106,3 +106,6 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
 
 -- toggle markdown preview
 --vim.keymap.set("n", "<C-m>", ":MarkdownPreviewToggle<CR>", {silent = true})
+
+-- open Planner
+vim.keymap.set("n", "<leader>cp", ":e ~/BrainVault/Planner.md<CR>")
