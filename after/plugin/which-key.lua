@@ -1,6 +1,6 @@
 local wk = require("which-key")
 -- these are the default settings
-wk.setup {
+wk.setup({
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -88,7 +88,7 @@ wk.setup {
         buftypes = {},
         filetypes = {},
     },
-}
+})
 
 -- test
 -- document and/or setup your own mappings
@@ -97,7 +97,13 @@ wk.register({
         ["<space>"] = "highlight",
         a = "aerial",
         b = "buffers",
-        -- ["c"] = "which_key_ignore", -- don't know what this is mapped to
+        c = {
+            name = "cd",
+            d = "cd",
+            c = "configs (telescope)",
+            p = "planner",
+            v = "vault (telescope)"
+        },
         d = "delete to void",
         e = "nvimtree",
         f = {
