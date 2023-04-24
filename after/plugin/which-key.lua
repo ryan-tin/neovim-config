@@ -151,5 +151,15 @@ wk.register({
             ["<CR>"] = "Run :Git checkout command",
             ["?"] = "help"
         }
-    }
+    },
+    ["["] = {
+        d = "diagnostic",
+        b = "buffer",
+        t = "tab"
+    },
+    ["]"] = {
+        d = "diagnostic",
+        b = "buffer",
+        t = "tab"
+    },
 })
