@@ -8,7 +8,9 @@ vim.opt.termguicolors = true
 -- OR setup with some options
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
+    auto_reload_on_write = true,
     view = {
+        side = "left",
         adaptive_size = true,
         mappings = {
             list = {
