@@ -188,12 +188,10 @@ wk.register({
     },
     ["["] = {
         d = "diagnostic",
-        b = "buffer",
         t = "tab"
     },
     ["]"] = {
         d = "diagnostic",
-        b = "buffer",
         t = "tab"
     },
 })
