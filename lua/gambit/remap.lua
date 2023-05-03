@@ -20,14 +20,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- these are for "good times on twitch" can ignore these
--- vim.keymap.set("n", "<leader>vwm", function()
---     require("vim-with-me").StartVimWithMe()
--- end)
--- vim.keymap.set("n", "<leader>svwm", function()
---     require("vim-with-me").StopVimWithMe()
--- end)
-
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 -- foo
@@ -82,6 +74,7 @@ vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { silent = true })
 -- vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
 -- vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { silent = true })
+vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#<CR>", { silent = true }) -- close all buffers except current one
 
 -- tabs
 -- <C-PageUp> and <C-PageDown> also work to change tabs, gt and gT also work
@@ -108,7 +101,7 @@ vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { silent = true })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
 
 -- toggle markdown preview
---vim.keymap.set("n", "<C-m>", ":MarkdownPreviewToggle<CR>", {silent = true})
+vim.keymap.set("n", "<leader>m", ":MarkdownPreviewToggle<CR>", {silent = true})
 
 -- open Planner
 vim.keymap.set("n", "<leader>cp", ":e ~/BrainVault/Planner.md<CR>")
