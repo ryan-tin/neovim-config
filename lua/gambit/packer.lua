@@ -136,5 +136,6 @@ return require('packer').startup(function(use)
     }
 
     use('rcarriga/nvim-notify')
+    use("lukas-reineke/indent-blankline.nvim")
 
 end)
