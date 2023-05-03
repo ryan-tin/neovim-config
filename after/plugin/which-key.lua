@@ -121,6 +121,7 @@ wk.register({
             s = "scopes",
             x = "terminate"
         },
+        D = "delete to void",
         e = "nvimtree",
         f = {
             name = "fuzzy (telescope)",
