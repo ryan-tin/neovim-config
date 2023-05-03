@@ -43,7 +43,7 @@ wk.setup({
         scroll_up = "<c-u>", -- binding to scroll up inside the popup
     },
     window = {
-        border = "single", -- none, single, double, shadow
+        border = "none", -- none, single, double, shadow
         position = "bottom", -- bottom, top
         margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
         -- margin = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
@@ -115,8 +115,8 @@ wk.register({
             B = "list breakpoints",
             r = "repl open",
             l = "run last",
-            h = "hover evaluate",
-            p = "preview evaluate",
+            i = "inspect (howver)",
+            I = "inspect (window)",
             f = "frames",
             s = "scopes",
             x = "terminate"
