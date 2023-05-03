@@ -56,10 +56,10 @@ vim.keymap.set("i", "KJ", "<Esc>")
 vim.keymap.set("n", "Q", "<nop>")
 
 -- not sure what this does, but it uses tmux
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+-- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- quick format page
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+-- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- quick fix navigation
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
