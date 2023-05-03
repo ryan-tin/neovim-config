@@ -3,5 +3,5 @@
 --   return
 -- end
 
-vim.keymap.set({"i", "s"}, "<Tab>", "<cmd>lua require'luasnip'.jump(1)<CR>")
-vim.keymap.set({"i", "s"}, "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<CR>")
+vim.keymap.set({"i", "s" }, "<Tab>", "<cmd>lua require'luasnip'.jump(1)<CR>")
+vim.keymap.set({"i", "s" }, "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<CR>")
