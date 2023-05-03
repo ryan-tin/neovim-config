@@ -136,6 +136,11 @@ return require('packer').startup(function(use)
     }
 
     use('rcarriga/nvim-notify')
+    use {
+        "SmiteshP/nvim-navic",
+        requires = "neovim/nvim-lspconfig"
+    }
+
     use("lukas-reineke/indent-blankline.nvim")
 
 end)
