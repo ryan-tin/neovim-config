@@ -133,7 +133,8 @@ wk.register({
             d = "diagnostics",
             r = "resume",
             i = "implementations",
-            v = "vault"
+            v = "vault",
+            m = "messages"
         },
         g = {
             name = "git",
@@ -154,6 +155,7 @@ wk.register({
             r = "references",
             n = "rename"
         },
+        m = "markdown preview",
         p = "paste & delete to void",
         s = "rename",
         t = {
@@ -167,6 +169,7 @@ wk.register({
         u = "undo tree",
         w = "save",
         x = "close buffer",
+        X = "close all other buffers",
         Y = "yank line to clipboard",
         y = "yank to clipboard",
     },
