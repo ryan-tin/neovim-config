@@ -140,7 +140,8 @@ wk.register({
             s = "status",
             d = "diff",
             b = "blame line toggle",
-            h = "hunk preview"
+            h = "hunk preview",
+            f = "floating hunk"
         },
         i = "harpoon file",
         j = "quick fix idk",
