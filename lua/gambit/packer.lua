@@ -123,5 +123,9 @@ return require('packer').startup(function(use)
 
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
+    use('lervag/vimtex')
 
+    -- DAP - Debug Adapter Protocol
+    use('mfussenegger/nvim-dap')
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)
