@@ -137,8 +137,10 @@ wk.register({
         },
         g = {
             name = "git",
-            s = { "status" },
-            d = { "diff" },
+            s = "status",
+            d = "diff",
+            b = "blame line toggle",
+            h = "hunk preview"
         },
         i = "harpoon file",
         j = "quick fix idk",
@@ -188,10 +190,12 @@ wk.register({
     },
     ["["] = {
         d = "diagnostic",
-        t = "tab"
+        t = "tab",
+        h = "hunk"
     },
     ["]"] = {
         d = "diagnostic",
-        t = "tab"
+        t = "tab",
+        h = "hunk"
     },
 })
