@@ -135,7 +135,6 @@ return require('packer').startup(function(use)
         requires = "nvim-tree/nvim-web-devicons",
     }
 
-    use('rcarriga/nvim-notify')
     use {
         "SmiteshP/nvim-navic",
         requires = "neovim/nvim-lspconfig"
