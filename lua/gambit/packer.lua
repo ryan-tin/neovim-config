@@ -69,8 +69,8 @@ return require('packer').startup(function(use)
     use('windwp/nvim-autopairs')
 
     -- bufferline (taps on top)
-    use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
-    require("bufferline").setup()
+    -- use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+    -- require("bufferline").setup()
 
     -- status line below
     use {
@@ -80,6 +80,7 @@ return require('packer').startup(function(use)
 
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use('nvim-treesitter/playground')
+    use('nvim-treesitter/nvim-treesitter-context')
 
     use {
         "akinsho/toggleterm.nvim", tag = '*', config = function()

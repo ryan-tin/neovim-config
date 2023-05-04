@@ -94,7 +94,6 @@ wk.setup({
 -- document and/or setup your own mappings
 wk.register({
     ["<leader>"] = {
-        ["<space>"] = "highlight",
         a = "aerial",
         b = "buffers",
         c = {
@@ -144,9 +143,10 @@ wk.register({
             h = "hunk preview",
             f = "floating hunk"
         },
+        h = "remove highlight",
         i = "harpoon file",
-        j = "quick fix idk",
-        k = "quick fix idk",
+        j = "quick fix next",
+        k = "quick fix next",
         l = {
             name = "lsp",
             a = "code action",
@@ -193,11 +193,13 @@ wk.register({
         }
     },
     ["["] = {
+        b = "buffer",
         d = "diagnostic",
         t = "tab",
         h = "hunk"
     },
     ["]"] = {
+        b = "buffer",
         d = "diagnostic",
         t = "tab",
         h = "hunk"

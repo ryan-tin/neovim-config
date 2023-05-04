@@ -69,10 +69,10 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { silent = true })
 
 -- buffers
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })
-vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { silent = true })
--- vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
--- vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
+-- vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })
+-- vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { silent = true })
+vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
+vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { silent = true })
 vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#<CR>", { silent = true }) -- close all buffers except current one
 
