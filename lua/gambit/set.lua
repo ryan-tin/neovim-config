@@ -12,6 +12,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+vim.opt.showtabline = 1 -- show tabline when there is at least two tabs 
 
 -- no line wrap
 vim.opt.wrap = false
@@ -46,7 +47,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.hlsearch = true
 
 -- ignore case in search patterns Vim
-vim.opt.ignorecase = true
+vim.opt.ignorecase = false -- case sensitive
 
 -- highlight the current line
 vim.opt.cursorline = true
