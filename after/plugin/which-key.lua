@@ -1,5 +1,5 @@
 local wk = require("which-key")
--- these are the default settings
+
 wk.setup({
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
@@ -43,7 +43,7 @@ wk.setup({
         scroll_up = "<c-u>", -- binding to scroll up inside the popup
     },
     window = {
-        border = "none", -- none, single, double, shadow
+        border = "single", -- none, single, double, shadow
         position = "bottom", -- bottom, top
         margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
         -- margin = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
@@ -121,7 +121,7 @@ wk.register({
             x = "terminate"
         },
         D = "delete to void",
-        e = "harpoon toggle",
+        e = "Harpoon toggle",
         f = {
             name = "fuzzy (telescope)",
             a = "aerial",
@@ -140,11 +140,13 @@ wk.register({
             s = "status",
             d = "diff",
             b = "blame line toggle",
-            h = "hunk preview",
-            f = "floating hunk"
+            p = "hunk preview",
+            f = "floating hunk",
+            h = "left diffget",
+            l = "right diffget"
         },
         h = "remove highlight",
-        i = "harpoon file",
+        i = "Harpoon file",
         j = "quick fix next",
         k = "quick fix next",
         l = {
@@ -155,7 +157,7 @@ wk.register({
             r = "references",
             n = "rename"
         },
-        m = "markdown preview",
+        m = "Markdown preview",
         p = "paste & delete to void",
         s = "rename",
         t = {
@@ -166,12 +168,13 @@ wk.register({
             l = "loc list",
             q = "quickfix",
         },
-        u = "undo tree",
+        u = "Undo Tree",
         w = "save",
         x = "close buffer",
-        X = "close all other buffers",
+        -- X = "close all other buffers",
         Y = "yank line to clipboard",
         y = "yank to clipboard",
+        Z = "Zen mode"
     },
     ["g"] = {
         d = "function definition"

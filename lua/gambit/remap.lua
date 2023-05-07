@@ -21,7 +21,8 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]])
+-- TODO weird behavior when attempting to paste into word at the end of a line
+vim.keymap.set("x", "<leader>p", [["_dP]]) -- TODO pasted text moves one space to the left
 -- foo
 -- bar
 -- suppose you selected foo and yanked it, and then you selected bar and hit p.
@@ -74,7 +75,7 @@ vim.keymap.set("n", "<C-e>", "<cmd>NvimTreeFindFileToggle<CR>", { silent = true 
 vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { silent = true })
-vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#<CR>", { silent = true }) -- close all buffers except current one
+-- vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#|bd#<CR>", { silent = true }) -- close all buffers except current one
 
 -- tabs
 -- <C-PageUp> and <C-PageDown> also work to change tabs, gt and gT also work
@@ -96,6 +97,8 @@ vim.keymap.set("n", "<leader><space>", ":noh<CR>", { silent = true })
 
 -- git 
 vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gh", "<cmd>diffget //2<CR>")
+vim.keymap.set("n", "<leader>gl", "<cmd>diffget //3<CR>")
 
 -- save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
