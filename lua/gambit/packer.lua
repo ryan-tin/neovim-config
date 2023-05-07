@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     use('ThePrimeagen/harpoon')
+    use('ThePrimeagen/vim-be-good') -- use command :VimBeGood to start
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
 
