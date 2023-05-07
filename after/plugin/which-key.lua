@@ -121,7 +121,7 @@ wk.register({
             x = "terminate"
         },
         D = "delete to void",
-        e = "nvimtree",
+        e = "harpoon toggle",
         f = {
             name = "fuzzy (telescope)",
             a = "aerial",
