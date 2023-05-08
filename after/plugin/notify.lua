@@ -3,8 +3,9 @@ vim.notify = notify
 
 notify.setup({
     background_colour = "#000000",
-    fps = 30,
+    fps = 120,
     top_down = true,
+    timeout = 2000,
     stages = "static", -- using other styles causes cursor flicker 
-    -- render = "compact"
+    level = 2
 })

@@ -26,9 +26,7 @@ local plugins = {
             {'neovim/nvim-lspconfig'},             -- Required
             {                                      -- Optional
                 'williamboman/mason.nvim',
-                build = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
+                build = ":MasonUpdate"
             },
             {'williamboman/mason-lspconfig.nvim'}, -- Optional
             -- Autocompletion
@@ -76,11 +74,12 @@ local plugins = {
             require("nvim-surround").setup() -- empty for defaults
         end
     },
+    { 'stevearc/aerial.nvim', event = "VeryLazy" },
     {
-        'stevearc/aerial.nvim',
-        event = "VeryLazy"
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        ft = "markdown",
     },
-    { "iamcco/markdown-preview.nvim", ft = "markdown" },
     { 'lervag/vimtex', ft = "latex" },
     { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },
     "lukas-reineke/indent-blankline.nvim",
