@@ -37,15 +37,15 @@ require("trouble").setup({
     auto_jump = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
     -- commented these out to get the icons
     -- signs = {
-    --     -- icons / text used for a diagnostic
-    --     error = "",
-    --     warning = "",
-    --     hint = "",
-    --     information = "",
-    --     other = ""
-    -- },
-    use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
-})
+        --     -- icons / text used for a diagnostic
+        --     error = "",
+        --     warning = "",
+        --     hint = "",
+        --     information = "",
+        --     other = ""
+        -- },
+        use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+    })
 
 vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
 vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true})
@@ -59,12 +59,12 @@ local trouble = require("trouble.providers.telescope")
 
 local telescope = require("telescope")
 
--- when using telescope to search for daignostics, use <C-t> to open with trouble
+-- when using telescope (<leader>fd) to search for daignostics, use <C-t> to open with trouble
 telescope.setup {
-  defaults = {
-    mappings = {
-      i = { ["<c-t>"] = trouble.open_with_trouble },
-      n = { ["<c-t>"] = trouble.open_with_trouble },
+    defaults = {
+        mappings = {
+            i = { ["<c-t>"] = trouble.open_with_trouble },
+            n = { ["<c-t>"] = trouble.open_with_trouble },
+        },
     },
-  },
 }

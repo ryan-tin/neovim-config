@@ -1,5 +1,7 @@
 local dap = require('dap')
 
+-- how to setup for other languages?
+
 dap.adapters.codelldb = {
     type = 'server',
     host = "127.0.0.1",

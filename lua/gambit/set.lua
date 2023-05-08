@@ -47,7 +47,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.hlsearch = true
 
 -- ignore case in search patterns Vim
-vim.opt.ignorecase = false -- case sensitive
+vim.opt.ignorecase = true
 
 -- highlight the current line
 vim.opt.cursorline = true

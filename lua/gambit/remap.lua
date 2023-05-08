@@ -55,7 +55,7 @@ vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- quick fix navigation
-vim.keymap.set("n", "<C-N>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-m>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
 -- loclist navigation
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
@@ -97,8 +97,8 @@ vim.keymap.set("n", "<leader><space>", ":noh<CR>", { silent = true })
 
 -- git 
 vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { silent = true })
-vim.keymap.set("n", "<leader>gh", "<cmd>diffget //2<CR>")
-vim.keymap.set("n", "<leader>gl", "<cmd>diffget //3<CR>")
+vim.keymap.set("n", "<leader>gH", "<cmd>diffget //2<CR>")
+vim.keymap.set("n", "<leader>gL", "<cmd>diffget //3<CR>")
 
 -- save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })

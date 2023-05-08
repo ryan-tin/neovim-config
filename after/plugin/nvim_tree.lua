@@ -20,9 +20,25 @@ require("nvim-tree").setup({
         },
     },
     renderer = {
-        group_empty = true,
+        add_trailing = true,
+        group_empty = false,
+        highlight_git = true,
         root_folder_modifier = ":t",
+        indent_width = 2,
+        indent_markers = {
+            enable = true,
+            inline_arrows = true,
+            icons = {
+                corner = "└",
+                edge = "│",
+                item = "│",
+                bottom = "─",
+                none = " ",
+            },
+        },
         icons = {
+            webdev_colors = true,
+            padding = " ",
             glyphs = {
                 default = "",
                 symlink = "",
@@ -37,11 +53,11 @@ require("nvim-tree").setup({
                     symlink_open = "",
                 },
                 git = {
-                    unstaged = "",
-                    staged = "S",
+                    unstaged = "✗",
+                    staged = "✓",
                     unmerged = "",
                     renamed = "➜",
-                    untracked = "U",
+                    untracked = "★",
                     deleted = "",
                     ignored = "◌",
                 },
@@ -61,4 +77,7 @@ require("nvim-tree").setup({
     filters = {
         dotfiles = false,
     },
+    live_filter = {
+        always_show_folders = false,
+    }
 })

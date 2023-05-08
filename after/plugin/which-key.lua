@@ -1,5 +1,8 @@
 local wk = require("which-key")
 
+vim.o.timeout = true
+vim.o.timeoutlen = 250
+
 wk.setup({
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
@@ -94,6 +97,7 @@ wk.setup({
 -- document and/or setup your own mappings
 wk.register({
     ["<leader>"] = {
+        ["/"] = "comment toggle",
         a = "aerial",
         b = "buffers",
         c = {
@@ -133,17 +137,16 @@ wk.register({
             r = "resume",
             i = "implementations",
             v = "vault",
-            m = "messages"
         },
         g = {
             name = "git",
             s = "status",
             d = "diff",
             b = "blame line toggle",
-            p = "hunk preview",
+            h = "hunk preview",
             f = "floating hunk",
-            h = "left diffget",
-            l = "right diffget"
+            H = "left diffget",
+            L = "right diffget"
         },
         h = "remove highlight",
         i = "Harpoon file",
@@ -155,7 +158,8 @@ wk.register({
             d = "diagnostic",
             s = "symbols",
             r = "references",
-            n = "rename"
+            n = "rename",
+            i = "implementations"
         },
         m = "Markdown preview",
         p = "paste & delete to void",

@@ -1,14 +1,5 @@
 local navic = require("nvim-navic")
 
--- TODO, add other lsps
-
--- don't need to configure different lsps independently?
--- require("lspconfig").clangd.setup {
---     on_attach = function(client, bufnr)
---         navic.attach(client, bufnr)
---     end
--- }
-
 navic.setup {
     icons = {
         File          = " ",
