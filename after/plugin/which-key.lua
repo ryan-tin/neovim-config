@@ -98,7 +98,8 @@ wk.setup({
 wk.register({
     ["<leader>"] = {
         ["/"] = "comment toggle",
-        a = "aerial",
+        a = "Alpha",
+        A = "Aerial",
         b = "buffers",
         c = {
             name = "cd",
