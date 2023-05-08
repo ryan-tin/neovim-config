@@ -91,7 +91,8 @@ local plugins = {
         config = function ()
             require'alpha'.setup(require'alpha.themes.dashboard'.config)
         end
-    }
+    },
+    "rcarriga/nvim-notify",
 }
 
 local opts = {}

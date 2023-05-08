@@ -15,6 +15,7 @@ vim.keymap.set("n", "<leader>fc", ":Telescope find_files cwd=~/.config/nvim/<CR>
 vim.keymap.set("n", "<leader>fv", ":Telescope find_files cwd=~/BrainVault/<CR>") -- serach vault
 vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, {})
 -- vim.keymap.set('n', '<leader>fv', builtin.lsp_document_symbols, {}) -- this overlaps with vault
+vim.keymap.set('n', '<leader>fm', "<cmd>Telescope notify<CR>", {silent = true})
 
 -- lots of other cool stuff possible with Telescope, incling
 -- quickfix
