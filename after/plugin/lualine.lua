@@ -40,8 +40,8 @@ local filetype = {
 -- may be useful in the future
 local branch = {
     "branch",
-    icons_enabled = true,
     icon = "",
+    icons_enabled = true,
 }
 
 local location = {
@@ -61,12 +61,12 @@ lualine.setup({
         always_divide_middle = true,
     },
     sections = {
-        lualine_a = { mode },
+        lualine_a = { "mode" },
         lualine_b = { diagnostics },
         lualine_c = { "filename", "navic" },
         lualine_x = { diff, filetype },
-        lualine_y = { location },
-        lualine_z = { "progress" },
+        lualine_y = { location, "progress" },
+        lualine_z = { branch },
 
     },
     inactive_sections = {
