@@ -18,9 +18,9 @@ dashboard.section.buttons.val = {
     dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
     dashboard.button( "f", "  > Find file", ":Telescope find_files cwd=./<CR>"),
     dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
-    dashboard.button( "s", "  > Search text", ":Telescope live_grep <CR>"),
+    dashboard.button( "s", "  > Search", ":Telescope live_grep <CR>"),
     dashboard.button( "c", "  > Configs" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-    dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
+    dashboard.button( "q", "  > Quit", ":qa<CR>"),
 }
 
 -- Disable folding on alpha buffer
