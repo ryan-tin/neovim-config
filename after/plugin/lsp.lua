@@ -1,4 +1,5 @@
 local lsp = require("lsp-zero")
+local cmp = require('cmp')
 
 lsp.preset("recommended")
 
@@ -12,40 +13,32 @@ lsp.ensure_installed({
     'clangd' -- C and C++
 })
 
--- Fix bug: Undefined global 'vim'
-lsp.configure('lua_ls', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
+-- (Optional) Configure lua language server for neovim
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
-local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ["<C-Space>"] = cmp.mapping.complete(),
-})
--- TODO pressing enter to select comp?
+local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
+    mapping = {
+        -- Enter / <C-y> to confirm completion
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<C-y>'] = cmp.mapping.confirm({select = true}),
+        -- Ctrl+Space to trigger completion menu
+        ['<C-Space>'] = cmp.mapping.complete(),
+        -- move through cmp menu
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        -- Navigate between snippet placeholder
+        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+        -- disable completion with tab (helps with copilot setup?)
+        ['<Tab>'] = nil,
+        ['<S-Tab>'] = nil
+    },
     experimental = {
-        ghost_text = true
+        ghost_text = false
     }
-})
-
--- disable completion with tab
--- this helps with copilot setup
--- cmp_mappings['<Tab>'] = nil
--- cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
 })
 
 lsp.set_preferences({
@@ -60,7 +53,6 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
-
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<leader>ls", vim.lsp.buf.workspace_symbol, opts) -- search for a symbol

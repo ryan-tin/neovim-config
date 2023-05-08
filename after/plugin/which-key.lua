@@ -141,13 +141,18 @@ wk.register({
         },
         g = {
             name = "git",
+            t = {
+                name = "toggle",
+                b = "line blame",
+                w = "word diff",
+                d = "deleted"
+            },
             s = "status",
             d = "diff",
-            b = "blame line toggle",
             h = "hunk preview",
             f = "floating hunk",
             H = "left diffget",
-            L = "right diffget"
+            L = "right diffget",
         },
         h = "remove highlight",
         i = "Harpoon file",

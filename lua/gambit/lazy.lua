@@ -20,21 +20,26 @@ local plugins = {
     'tpope/vim-fugitive',
     {
         'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
         dependencies = {
             -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
+            {'neovim/nvim-lspconfig'},             -- Required
+            {                                      -- Optional
+                'williamboman/mason.nvim',
+                build = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end,
+            },
+            {'williamboman/mason-lspconfig.nvim'}, -- Optional
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/nvim-cmp'},     -- Required
+            {'hrsh7th/cmp-nvim-lsp'}, -- Required
             {'hrsh7th/cmp-buffer'},
             {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
             {'hrsh7th/cmp-nvim-lua'},
             -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            -- Snippet Collection (Optional)
+            {'L3MON4D3/LuaSnip'},     -- Required
+            {'saadparwaiz1/cmp_luasnip'},
             {'rafamadriz/friendly-snippets'},
         }
     },
@@ -73,7 +78,7 @@ local plugins = {
     },
     {
         'stevearc/aerial.nvim',
-        -- event = "VeryLazy"
+        event = "VeryLazy"
     },
     { "iamcco/markdown-preview.nvim", ft = "markdown" },
     { 'lervag/vimtex', ft = "latex" },

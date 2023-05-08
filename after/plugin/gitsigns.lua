@@ -15,6 +15,9 @@ gitsigns.setup {
     numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
     linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
     word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+    diff_opts = {
+        internal = true -- required to show word diff
+    },
     watch_gitdir = {
         interval = 1000,
         follow_files = true,
@@ -47,8 +50,11 @@ gitsigns.setup {
     },
 }
 
-vim.keymap.set("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gh", ":Gitsigns preview_hunk_inline<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gf", ":Gitsigns preview_hunk<CR>", { silent = true })
 vim.keymap.set("n", "]h", ":Gitsigns next_hunk<CR>", { silent = true })
 vim.keymap.set("n", "[h", ":Gitsigns prev_hunk<CR>", { silent = true })
+-- toggles
+vim.keymap.set("n", "<leader>gtb", ":Gitsigns toggle_current_line_blame<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gtw", ":Gitsigns toggle_word_diff<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gtd", ":Gitsigns toggle_deleted<CR>", { silent = true })
