@@ -1,6 +1,20 @@
 local builtin = require('telescope.builtin')
 require('telescope').load_extension('aerial')
 
+require('telescope').setup({
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-h>"] = "which_key",
+                ['x'] = require("telescope.actions").delete_buffer
+            },
+            n = {
+                ['x'] = require("telescope.actions").delete_buffer
+            }
+        }
+    },
+})
+
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
