@@ -1,7 +1,7 @@
 local wk = require("which-key")
 
 vim.o.timeout = true
-vim.o.timeoutlen = 250
+vim.o.timeoutlen = 500
 
 wk.setup({
     plugins = {
