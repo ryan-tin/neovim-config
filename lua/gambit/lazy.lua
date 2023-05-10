@@ -56,8 +56,15 @@ local plugins = {
         },
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     },
-    'mfussenegger/nvim-dap',
-    { "rcarriga/nvim-dap-ui", dependencies = "mfussenegger/nvim-dap" },
+    {
+        'mfussenegger/nvim-dap',
+        event = "VeryLazy"
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = "mfussenegger/nvim-dap",
+        event = "VeryLazy"
+    },
     { "folke/trouble.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
     'lewis6991/gitsigns.nvim',
     'rose-pine/neovim',
