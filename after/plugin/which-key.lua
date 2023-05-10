@@ -126,7 +126,7 @@ wk.register({
             x = "terminate"
         },
         D = "delete to void",
-        e = "Harpoon toggle",
+        e = "Tree toggle",
         f = {
             name = "fuzzy (telescope)",
             a = "aerial",
