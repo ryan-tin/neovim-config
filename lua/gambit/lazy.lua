@@ -13,7 +13,26 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-    { 'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { 'nvim-lua/plenary.nvim' } },
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.1',
+        dependencies = { 'nvim-lua/plenary.nvim' } ,
+        -- build = function()
+        --     require('telescope').setup({
+        --         defaults = {
+        --             mappings = {
+        --                 i = {
+        --                     ["<C-h>"] = "which_key",
+        --                     ["<C-x>"] = "delete_buffer"
+        --                 },
+        --                 n = {
+        --                     ["<C-x>"] = "delete_buffer"
+        --                 }
+        --             }
+        --         }
+        --     })
+        -- end
+    },
     'ThePrimeagen/harpoon',
     'ThePrimeagen/vim-be-good', -- use command :VimBeGood to start
     'mbbill/undotree',
@@ -81,7 +100,6 @@ local plugins = {
             require("nvim-surround").setup() -- empty for defaults
         end
     },
-    { 'stevearc/aerial.nvim', event = "VeryLazy" },
     {
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
@@ -98,7 +116,6 @@ local plugins = {
             require'alpha'.setup(require'alpha.themes.dashboard'.config)
         end
     },
-    "rcarriga/nvim-notify",
 }
 
 local opts = {}
