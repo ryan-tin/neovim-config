@@ -97,9 +97,7 @@ wk.setup({
 -- document and/or setup your own mappings
 wk.register({
     ["<leader>"] = {
-        ["/"] = "comment toggle",
         a = "Alpha",
-        A = "Aerial",
         b = "buffers",
         c = {
             name = "cd",

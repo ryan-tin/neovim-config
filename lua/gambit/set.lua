@@ -1,4 +1,4 @@
--- vim.opt.guicursor = "" --fat cursor
+vim.opt.guicursor = "" --fat cursor
 -- commenting this out brought the slim cursor back
 
 -- line numbers and relative line numbers activated
@@ -9,7 +9,7 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.expandtab = true -- spaces will be used to fill the amount of whitespace of the tab.
 
 vim.opt.smartindent = true
 vim.opt.showtabline = 1 -- show tabline when there is at least two tabs 
@@ -25,7 +25,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- incremental search
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 -- good colors
@@ -39,12 +39,8 @@ vim.opt.isfname:append("@-@")
 -- fast update time
 vim.opt.updatetime = 50
 
--- 80 width column to remind not have too much on one line
+-- 80 width column to remind not have too much on one line, use "" to remove line
 vim.opt.colorcolumn = "80"
--- vim.opt.colorcolumn = "" -- uncomment this to remove line
-
--- highlight all matches on previous serach patterns
-vim.opt.hlsearch = true
 
 -- ignore case in search patterns Vim
 vim.opt.ignorecase = true
@@ -54,3 +50,17 @@ vim.opt.cursorline = true
 
 -- allow mouse
 vim.opt.mouse = "a"
+
+-- no EOL is written to the end of a file if it is missing
+-- This fixes the problem that I had in the 550 group project
+vim.opt.fixeol = false
+
+-- operations that would normally fail like :q raises dialogue instead
+vim.opt.confirm = true
+
+-- remove EOB char, default is ~
+vim.opt.fillchars='eob: '
+
+-- don't show --INSERT-- in statusline, this info is already shown in lualine
+vim.opt.showmode = false
+-- vim.opt.winbar = "a"

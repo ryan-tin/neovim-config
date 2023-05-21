@@ -1,17 +1,18 @@
 local builtin = require('telescope.builtin')
-require('telescope').load_extension('aerial')
+local actions = require('telescope.actions')
 
-require('telescope').setup({
+-- why do these settings not save?
+require("telescope").setup({
     defaults = {
         mappings = {
             i = {
-                ["<C-h>"] = "which_key",
-                ['x'] = require("telescope.actions").delete_buffer
+                ["<C-h>"] = actions.which_key,
+                ["<C-x>"] = actions.delete_buffer
             },
             n = {
-                ['x'] = require("telescope.actions").delete_buffer
-            }
-        }
+                ["<C-x>"] = actions.delete_buffer
+            },
+        },
     },
 })
 
@@ -28,9 +29,8 @@ vim.keymap.set('n', '<leader>fa', '<cmd>Telescope aerial<CR>', { silent = true }
 vim.keymap.set("n", "<leader>fc", ":Telescope find_files cwd=~/.config/nvim/<CR>") -- search config
 vim.keymap.set("n", "<leader>fv", ":Telescope find_files cwd=~/BrainVault/<CR>") -- serach vault
 vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, {})
--- vim.keymap.set('n', '<leader>fv', builtin.lsp_document_symbols, {}) -- this overlaps with vault
-vim.keymap.set('n', '<leader>fm', "<cmd>Telescope notify<CR>", {silent = true})
 
 -- lots of other cool stuff possible with Telescope, incling
 -- quickfix
 -- workspace symbols
+-- vim.keymap.set('n', '<leader>fv', builtin.lsp_document_symbols, {}) -- this overlaps with vault

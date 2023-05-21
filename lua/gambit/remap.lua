@@ -39,10 +39,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]])
 
 -- jk to escape
-vim.keymap.set("i", "kj", "<Esc>")
-vim.keymap.set("i", "KJ", "<Esc>")
--- COLEMAK escape
--- vim.keymap.set("i", "en", "<Esc>")
+-- vim.keymap.set("i", "kj", "<Esc>")
+-- vim.keymap.set("i", "KJ", "<Esc>")
 
 -- what does this do?
 -- Primeagan says never to use Q

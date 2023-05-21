@@ -1,4 +1,3 @@
--- print("hello from lazy")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -16,22 +15,7 @@ local plugins = {
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.1',
-        dependencies = { 'nvim-lua/plenary.nvim' } ,
-        -- build = function()
-        --     require('telescope').setup({
-        --         defaults = {
-        --             mappings = {
-        --                 i = {
-        --                     ["<C-h>"] = "which_key",
-        --                     ["<C-x>"] = "delete_buffer"
-        --                 },
-        --                 n = {
-        --                     ["<C-x>"] = "delete_buffer"
-        --                 }
-        --             }
-        --         }
-        --     })
-        -- end
+        dependencies = { 'nvim-lua/plenary.nvim' }
     },
     'ThePrimeagen/harpoon',
     'ThePrimeagen/vim-be-good', -- use command :VimBeGood to start
@@ -67,7 +51,6 @@ local plugins = {
         end,
     },
     'nvim-treesitter/playground',
-    'nvim-treesitter/nvim-treesitter-context',
     {
         'nvim-tree/nvim-tree.lua',
         dependencies = {
@@ -86,8 +69,9 @@ local plugins = {
     },
     { "folke/trouble.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
     'lewis6991/gitsigns.nvim',
-    'rose-pine/neovim',
+    -- colorschemes
     'sainnhe/everforest',
+    -- colorshemes
     'windwp/nvim-autopairs',
     { 'nvim-lualine/lualine.nvim', dependencies = 'nvim-tree/nvim-web-devicons' },
     { "akinsho/toggleterm.nvim", version = '*' },
