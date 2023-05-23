@@ -127,15 +127,22 @@ wk.register({
         e = "Tree toggle",
         f = {
             name = "fuzzy (telescope)",
-            a = "aerial",
-            c = "configs",
+            c = {
+                name = "cd",
+                c = "configs",
+                v = "vault",
+                u = "useful texts"
+            },
             f = "find file",
             s = "search (grep)",
+            p = "previous",
             h = "help",
+            -- lsp
             d = "diagnostics",
-            r = "resume",
+            r = "references",
             i = "implementations",
-            v = "vault",
+            v = "variables/symbols",
+            -- lsp
         },
         g = {
             name = "git",
