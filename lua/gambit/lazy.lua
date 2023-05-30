@@ -100,6 +100,7 @@ local plugins = {
         end
     },
     'natecraddock/workspaces.nvim',
+    'natecraddock/sessions.nvim',
 }
 
 local opts = {}
