@@ -91,7 +91,6 @@ local plugins = {
     },
     { 'lervag/vimtex', ft = "latex" },
     { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },
-    "lukas-reineke/indent-blankline.nvim",
     "folke/zen-mode.nvim",
     {
         'goolord/alpha-nvim',
