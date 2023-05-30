@@ -99,6 +99,7 @@ local plugins = {
             require'alpha'.setup(require'alpha.themes.dashboard'.config)
         end
     },
+    'natecraddock/workspaces.nvim',
 }
 
 local opts = {}

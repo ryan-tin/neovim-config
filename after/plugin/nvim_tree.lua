@@ -7,6 +7,7 @@ vim.opt.termguicolors = true
 
 -- OR setup with some options
 require("nvim-tree").setup({
+    sync_root_with_cwd = true, -- useful when changing workspaces
     sort_by = "case_sensitive",
     auto_reload_on_write = true,
     view = {

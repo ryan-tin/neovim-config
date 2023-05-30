@@ -134,7 +134,8 @@ wk.register({
                 u = "useful texts"
             },
             f = "find file",
-            s = "search (grep)",
+            s = "search (grep static)",
+            g = "grep (live)",
             p = "previous",
             h = "help",
             -- lsp
@@ -142,8 +143,10 @@ wk.register({
             r = "references",
             i = "implementations",
             v = "variables/symbols",
+            w = "workspaces",
             -- lsp
         },
+        F = "format",
         g = {
             name = "git",
             t = {

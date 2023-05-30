@@ -1,7 +1,8 @@
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
+local telescope = require('telescope')
 
-require('telescope').setup{
+telescope.setup{
     defaults = {},
     pickers = {
         buffers = {
@@ -25,6 +26,8 @@ vim.keymap.set('n', '<leader>fp', builtin.resume, { silent = true })
 vim.keymap.set('n', '<leader>fs', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fw', ":Telescope workspaces<CR>", {silent=true})
 
 -- lsp
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { silent = true })
@@ -36,3 +39,5 @@ vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 vim.keymap.set("n", "<leader>fcc", ":Telescope find_files cwd=~/.config/nvim/<CR>", {silent = true})
 vim.keymap.set("n", "<leader>fcv", ":Telescope find_files cwd=~/BrainVault/<CR>", {silent = true})
 vim.keymap.set("n", "<leader>fcu", ":Telescope find_files cwd=~/Useful_Texts/<CR>", {silent = true})
+
+telescope.load_extension("workspaces")
