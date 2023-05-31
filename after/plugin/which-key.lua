@@ -97,7 +97,7 @@ wk.setup({
 -- document and/or setup your own mappings
 wk.register({
     ["<leader>"] = {
-        a = "Alpha",
+        A = "Alpha",
         b = "buffers",
         c = {
             name = "cd",
