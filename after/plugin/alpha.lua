@@ -17,9 +17,9 @@ dashboard.section.header.val = {
 dashboard.section.buttons.val = {
     dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
     dashboard.button( "f", "  > Find file", ":Telescope find_files cwd=./<CR>"),
-    dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
     dashboard.button( "s", "  > Search", ":Telescope live_grep <CR>"),
-    dashboard.button( "w", "  > Load Workspace", ":SessionsLoad .session<CR>"),
+    dashboard.button( "S", "  > Resume Session", ":SessionsLoad .session<CR>"),
+    dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
     dashboard.button( "c", "  > Config" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
     dashboard.button( "q", "  > Quit", ":qa<CR>"),
 }
@@ -29,7 +29,7 @@ vim.cmd([[
     autocmd FileType alpha setlocal nofoldenable
 ]])
 
-vim.keymap.set("n", "<leader>a", ":Alpha<CR>", {silent = true})
+vim.keymap.set("n", "<leader>A", ":Alpha<CR>", {silent = true})
 
 -- Send config to alpha
 alpha.setup(dashboard.opts)
