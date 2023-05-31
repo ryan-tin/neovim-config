@@ -101,6 +101,7 @@ local plugins = {
     },
     'natecraddock/workspaces.nvim',
     'natecraddock/sessions.nvim',
+    'lukas-reineke/indent-blankline.nvim',
 }
 
 local opts = {}
