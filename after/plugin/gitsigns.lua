@@ -51,7 +51,7 @@ gitsigns.setup {
 }
 
 vim.keymap.set("n", "<leader>gh", ":Gitsigns preview_hunk_inline<CR>", { silent = true })
-vim.keymap.set("n", "<leader>gf", ":Gitsigns preview_hunk<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>gf", ":Gitsigns preview_hunk<CR>", { silent = true })
 vim.keymap.set("n", "]h", ":Gitsigns next_hunk<CR>", { silent = true })
 vim.keymap.set("n", "[h", ":Gitsigns prev_hunk<CR>", { silent = true })
 -- toggles

@@ -149,16 +149,19 @@ wk.register({
         F = "format",
         g = {
             name = "git",
+            b = "branches",
+            c = "commits",
+            d = "diff",
+            f = "file commits",
+            h = "hunks",
+            s = "status",
+            S = "stash",
             t = {
                 name = "toggle",
                 b = "line blame",
                 w = "word diff",
                 d = "deleted"
             },
-            s = "status",
-            d = "diff",
-            h = "hunk preview",
-            f = "floating hunk",
             H = "left diffget",
             L = "right diffget",
         },

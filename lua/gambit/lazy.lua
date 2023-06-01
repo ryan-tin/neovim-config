@@ -74,7 +74,6 @@ local plugins = {
     -- colorshemes
     'windwp/nvim-autopairs',
     { 'nvim-lualine/lualine.nvim', dependencies = 'nvim-tree/nvim-web-devicons' },
-    { "akinsho/toggleterm.nvim", version = '*' },
     'numToStr/Comment.nvim',
     "folke/which-key.nvim",
     {
@@ -101,7 +100,6 @@ local plugins = {
     },
     'natecraddock/workspaces.nvim',
     'natecraddock/sessions.nvim',
-    'lukas-reineke/indent-blankline.nvim',
 }
 
 local opts = {}
