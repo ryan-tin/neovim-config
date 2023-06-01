@@ -89,7 +89,6 @@ local plugins = {
         ft = "markdown",
     },
     { 'lervag/vimtex', ft = "latex" },
-    { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },
     "folke/zen-mode.nvim",
     {
         'goolord/alpha-nvim',
