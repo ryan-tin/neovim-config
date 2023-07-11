@@ -21,8 +21,8 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- greatest remap ever
--- TODO weird behavior when attempting to paste into word at the end of a line
-vim.keymap.set("x", "<leader>p", [["_dP]]) -- TODO pasted text moves one space to the left
+-- TODO: weird behavior when attempting to paste into word at the end of a line
+vim.keymap.set("x", "<leader>p", [["_dP]]) -- TODO: pasted text moves one space to the left
 -- foo
 -- bar
 -- suppose you selected foo and yanked it, and then you selected bar and hit p.
@@ -39,8 +39,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]])
 
 -- jk to escape
--- vim.keymap.set("i", "kj", "<Esc>")
--- vim.keymap.set("i", "KJ", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "KJ", "<Esc>")
 
 -- what does this do?
 -- Primeagan says never to use Q
@@ -53,11 +53,11 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>F", vim.lsp.buf.format)
 
 -- quick fix navigation
-vim.keymap.set("n", "<C-m>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
 -- loclist navigation
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- using leader s will let us replace the word we are on
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -103,3 +103,13 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
 
 -- open Planner
 vim.keymap.set("n", "<leader>cp", ":e ~/BrainVault/Planner.md<CR>")
+
+-- markdown preview
+vim.keymap.set("n", "<leader>m", ":MarkdownPreviewToggle<CR>")
+
+-- use the command
+-- :put =execute('mes')
+-- to put all messages into the current buffer
+--
+-- :{count}mes[sages]   Show the {count} most recent messages
+-- :mes[sages] clear    Clear all messages

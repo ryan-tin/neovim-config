@@ -47,7 +47,7 @@ local branch = {
 
 local location = {
     "location",
-    padding = 0,
+    -- padding = 0,
 }
 
 -- cool function for progress

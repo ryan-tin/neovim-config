@@ -1,3 +1,5 @@
+-- NOTE: entering zenmode, jumping to different file with harpoon, exiting zen mode
+-- returns to original file before jump (does not manage state)
 local zen = require("zen-mode")
 zen.setup({
     window = {
@@ -29,7 +31,7 @@ zen.setup({
             showcmd = false, -- disables the command in the last line of the screen
         },
         gitsigns = { enabled = false }, -- disables git signs
-        tmux = { enabled = false }, -- disables the tmux statusline
+        tmux = { enabled = true }, -- disables the tmux statusline
         -- this will change the font size on alacritty when in zen mode
         -- requires  Alacritty Version 0.10.0 or higher
         -- uses `alacritty msg` subcommand to change font size
@@ -39,6 +41,7 @@ zen.setup({
         },
     },
     -- callback where you can add custom code when the Zen window opens
+    -- FIX: TSContext does not show inside ZenMode
     on_open = function(win)
     end,
     -- callback where you can add custom code when the Zen window closes
@@ -46,4 +49,4 @@ zen.setup({
     end,
 })
 
-vim.keymap.set("n", "<leader>Z", ":ZenMode<CR>")
+vim.keymap.set("n", "<leader>z", ":ZenMode<CR>")

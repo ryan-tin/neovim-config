@@ -14,7 +14,7 @@ vim.opt.expandtab = true -- spaces will be used to fill the amount of whitespace
 vim.opt.smartindent = true
 vim.opt.showtabline = 1 -- show tabline when there is at least two tabs 
 
--- no line wrap
+-- no line wrap, true = line wrap, false = no line wrap
 vim.opt.wrap = false
 
 -- vim will not do backups

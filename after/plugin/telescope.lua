@@ -19,10 +19,10 @@ telescope.setup{
 }
 
 -- git
-vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
 vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
 -- checkout action with <CR>, reset mixed <C-r>m, reset soft <C-r>s, and reset hard <C-r>h
-vim.keymap.set('n', '<leader>gf', builtin.git_bcommits, {}) -- preview buffer commits
+vim.keymap.set('n', '<leader>gF', builtin.git_bcommits, {}) -- preview buffer commits
 vim.keymap.set('n', '<leader>gb', builtin.git_branches, {})
 -- Lists all branches with log preview, checkout action <cr>, track action <C-t>,
 -- rebase action<C-r>, create action <C-a>, switch action <C-s>, delete action <C-d> and merge action <C-y>

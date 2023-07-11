@@ -2,8 +2,8 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
+-- set termguicolors to enable highlight groups, handled in set.lua
+-- vim.opt.termguicolors = true
 
 -- OR setup with some options
 require("nvim-tree").setup({
@@ -69,10 +69,16 @@ require("nvim-tree").setup({
         enable = true,
         show_on_dirs = true,
         icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
+            -- hint = "",
+            -- info = "",
+            -- warning = "",
+            -- error = "",
+
+            -- letters are less confusing
+            error = 'E',
+            warning = 'W',
+            hint = 'H',
+            info = 'I'
         },
     },
     filters = {

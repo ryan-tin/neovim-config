@@ -97,7 +97,7 @@ wk.setup({
 -- document and/or setup your own mappings
 wk.register({
     ["<leader>"] = {
-        A = "Alpha",
+        A = "alpha",
         b = "buffers",
         c = {
             name = "cd",
@@ -124,7 +124,7 @@ wk.register({
             x = "terminate"
         },
         D = "delete to void",
-        e = "Tree toggle",
+        e = "tree",
         f = {
             name = "fuzzy (telescope)",
             c = {
@@ -152,7 +152,8 @@ wk.register({
             b = "branches",
             c = "commits",
             d = "diff",
-            f = "file commits",
+            f = "files",
+            F = "file commits",
             h = "hunks",
             s = "status",
             S = "stash",
@@ -166,9 +167,9 @@ wk.register({
             L = "right diffget",
         },
         h = "remove highlight",
-        i = "Harpoon file",
-        j = "quick fix next",
-        k = "quick fix next",
+        i = "harpoon file",
+        j = "loc list next",
+        k = "loc list prev",
         l = {
             name = "lsp",
             a = "code action",
@@ -178,7 +179,7 @@ wk.register({
             n = "rename",
             i = "implementations"
         },
-        m = "Markdown preview",
+        m = "markdown preview",
         p = "paste & delete to void",
         s = "rename",
         t = {
@@ -189,13 +190,13 @@ wk.register({
             l = "loc list",
             q = "quickfix",
         },
-        u = "Undo Tree",
+        u = "undo Tree",
         w = "save",
         x = "close buffer",
         -- X = "close all other buffers",
         Y = "yank line to clipboard",
         y = "yank to clipboard",
-        Z = "Zen mode"
+        z = "zen mode"
     },
     ["g"] = {
         d = "function definition"
