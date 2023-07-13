@@ -134,8 +134,8 @@ wk.register({
                 u = "useful texts"
             },
             f = "find file",
-            s = "search (grep static)",
-            g = "grep (live)",
+            s = "grep (live)",
+            g = "grep (static)",
             p = "previous",
             h = "help",
             -- lsp
