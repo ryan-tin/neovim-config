@@ -16,6 +16,12 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- return jump, but cursor stays in the middle
+vim.keymap.set("n", "<C-o>", "<C-o>zz")
+
+-- go do definition jump, but cursor stays in the middle
+-- vim.keymap.set("n", "gd", "gdzz")
+
 -- search terms stay in the middle
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -39,8 +45,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]])
 
 -- jk to escape
-vim.keymap.set("i", "kj", "<Esc>")
-vim.keymap.set("i", "KJ", "<Esc>")
+-- vim.keymap.set("i", "kj", "<Esc>")
+-- vim.keymap.set("i", "KJ", "<Esc>")
 
 -- what does this do?
 -- Primeagan says never to use Q
@@ -91,7 +97,7 @@ vim.keymap.set("v", "L", "$")
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>")
 
 -- no hilight
-vim.keymap.set("n", "<leader><space>", ":noh<CR>", { silent = true })
+vim.keymap.set("n", "<leader>h", ":noh<CR>", { silent = true })
 
 -- git
 vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { silent = true })

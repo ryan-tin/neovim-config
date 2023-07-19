@@ -1,4 +1,4 @@
-local dap, dapui = require("dap"),require("dapui")
+local dap, dapui = require("dap"), require("dapui")
 
 -- default config, does not work without it tho
 dapui.setup(
@@ -33,32 +33,32 @@ dapui.setup(
       expanded = ""
     },
     layouts = { {
-        elements = { {
-            id = "scopes",
-            size = 0.25
-          }, {
-            id = "breakpoints",
-            size = 0.25
-          }, {
-            id = "stacks",
-            size = 0.25
-          }, {
-            id = "watches",
-            size = 0.25
-          } },
-        position = "left",
-        size = 40
+      elements = { {
+        id = "scopes",
+        size = 0.25
       }, {
-        elements = { {
-            id = "repl",
-            size = 0.5
-          }, {
-            id = "console",
-            size = 0.5
-          } },
-        position = "bottom",
-        size = 10
+        id = "breakpoints",
+        size = 0.25
+      }, {
+        id = "stacks",
+        size = 0.25
+      }, {
+        id = "watches",
+        size = 0.25
       } },
+      position = "left",
+      size = 40
+    }, {
+      elements = { {
+        id = "repl",
+        size = 0.5
+      }, {
+        id = "console",
+        size = 0.5
+      } },
+      position = "bottom",
+      size = 10
+    } },
     mappings = {
       edit = "e",
       expand = { "<CR>", "<2-LeftMouse>" },
@@ -75,13 +75,13 @@ dapui.setup(
 )
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open()
+  dapui.open()
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
+  dapui.close()
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
+  dapui.close()
 end

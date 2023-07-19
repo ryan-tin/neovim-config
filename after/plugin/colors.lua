@@ -1,25 +1,27 @@
 function Everforest()
-    vim.opt.background = "dark"
-    vim.cmd( "let g:everforest_background = 'hard'" )
-    vim.cmd( "let g:everforest_better_performance = 1" )
-    vim.cmd( "let g:everforest_transparent_background = 1" ) -- 2 conflicts with lualine
-    -- The contrast of line numbers, indent lines, etc.
-    vim.cmd( "let g:everforest_ui_contrast = 'low'" ) -- accepts 'high' or 'low'
-    vim.cmd( "let g:everforest_diagnostic_virtual_text = 'colored'" )
-	vim.cmd.colorscheme("everforest")
+  vim.opt.background = "dark"
+  vim.cmd("let g:everforest_background = 'hard'")
+  vim.cmd("let g:everforest_better_performance = 1")
+  vim.cmd("let g:everforest_transparent_background = 1")     -- 2 conflicts with lualine
+  -- The contrast of line numbers, indent lines, etc.
+  vim.cmd("let g:everforest_ui_contrast = 'low'")            -- accepts 'high' or 'low'
+  vim.cmd("let g:everforest_diagnostic_virtual_text = 'colored'")
+  vim.cmd.colorscheme("everforest")
 
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
+
 -- don't forget to comment out that line in ~/.tmux.conf for everforest colors to load properly
 -- Everforest()
 
 function Kanagawa()
-    vim.o.background = ""
-    vim.cmd("colorscheme kanagawa-wave")
-    -- vim.cmd("colorscheme kanagawa-dragon")
-    -- vim.cmd("colorscheme kanagawa-lotus")
+  vim.o.background = ""
+  vim.cmd("colorscheme kanagawa-wave")
+  -- vim.cmd("colorscheme kanagawa-dragon")
+  -- vim.cmd("colorscheme kanagawa-lotus")
 end
+
 Kanagawa()
 
 -- make telescope borderless

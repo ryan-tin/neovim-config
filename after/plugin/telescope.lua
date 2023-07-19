@@ -2,20 +2,20 @@ local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local telescope = require('telescope')
 
-telescope.setup{
-    defaults = {},
-    pickers = {
-        buffers = {
-            mappings = {
-                i = {
-                    ["<C-b>"] = actions.delete_buffer
-                },
-                n = {
-                    ["<C-b>"] = actions.delete_buffer
-                },
-            }
-        }
+telescope.setup {
+  defaults = {},
+  pickers = {
+    buffers = {
+      mappings = {
+        i = {
+          ["<C-b>"] = actions.delete_buffer
+        },
+        n = {
+          ["<C-b>"] = actions.delete_buffer
+        },
+      }
     }
+  }
 }
 
 -- git
@@ -35,7 +35,8 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fp', builtin.resume, { silent = true })
 vim.keymap.set('n', '<leader>fg', function() builtin.grep_string({ search = vim.fn.input("Grep > ") }); end)
 vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fw', ":Telescope workspaces<CR>", {silent=true})
+vim.keymap.set('n', '<leader>fw', ":Telescope workspaces<CR>", { silent = true })
+-- vim.keymap.set('n', '<leader>fW', ":Telescope workspaces<CR>test", {silent=true}) -- FIX: go to most recent workspace
 
 -- lsp
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { silent = true })
@@ -44,8 +45,8 @@ vim.keymap.set('n', '<leader>fv', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 
 -- search commonly used directories
-vim.keymap.set("n", "<leader>fcc", ":Telescope find_files cwd=~/.config/nvim/<CR>", {silent = true})
-vim.keymap.set("n", "<leader>fcv", ":Telescope find_files cwd=~/BrainVault/<CR>", {silent = true})
-vim.keymap.set("n", "<leader>fcu", ":Telescope find_files cwd=~/Useful_Texts/<CR>", {silent = true})
+vim.keymap.set("n", "<leader>fcc", ":Telescope find_files cwd=~/.config/nvim/<CR>", { silent = true })
+vim.keymap.set("n", "<leader>fcv", ":Telescope find_files cwd=~/BrainVault/<CR>", { silent = true })
+vim.keymap.set("n", "<leader>fcu", ":Telescope find_files cwd=~/Useful_Texts/<CR>", { silent = true })
 
 telescope.load_extension("workspaces")
