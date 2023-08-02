@@ -98,6 +98,7 @@ local plugins = {
     ft = "markdown",
   },
   { 'lervag/vimtex', ft = "latex" },
+  { 'norcalli/nvim-colorizer.lua' },
   -- USEFUL END
   --
   -- COSMETIC
@@ -112,21 +113,9 @@ local plugins = {
   --
   -- COLORSCHEMES
   'sainnhe/everforest',
-  {
-    'rebelot/kanagawa.nvim',
-    lazy = false,
-    priority = 1000
-  },
-  {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 1000
-  },
-  {
-    'morhetz/gruvbox',
-    lazy = false,
-    priority = 1000
-  },
+  { 'rebelot/kanagawa.nvim', lazy = false, priority = 1000 },
+  { 'folke/tokyonight.nvim', lazy = false, priority = 1000 },
+  { 'morhetz/gruvbox', lazy = false, priority = 1000 },
   -- COLORSCHEMES END
 }
 
