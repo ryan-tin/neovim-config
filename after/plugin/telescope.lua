@@ -3,7 +3,16 @@ local actions = require('telescope.actions')
 local telescope = require('telescope')
 
 telescope.setup {
-  defaults = {},
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-w>"] = actions.send_selected_to_qflist + actions.open_qflist,
+      },
+      n = {
+        ["<C-w>"] = actions.send_selected_to_qflist + actions.open_qflist,
+      },
+    }
+  },
   pickers = {
     buffers = {
       mappings = {

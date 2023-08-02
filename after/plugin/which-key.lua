@@ -153,6 +153,7 @@ wk.register({
       b = "branches",
       c = "commits",
       d = "diff",
+      D = "diff (three way)",
       f = "files",
       F = "file commits",
       h = "hunks",
@@ -169,8 +170,8 @@ wk.register({
     },
     h = "remove highlight",
     i = "harpoon file",
-    j = "loc list next",
-    k = "loc list prev",
+    -- j = "loc list next",
+    -- k = "loc list prev",
     l = {
       name = "lsp",
       a = "code action",

@@ -45,8 +45,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]])
 
 -- jk to escape
--- vim.keymap.set("i", "kj", "<Esc>")
--- vim.keymap.set("i", "KJ", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "KJ", "<Esc>")
 
 -- what does this do?
 -- Primeagan says never to use Q
@@ -100,7 +100,11 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>")
 vim.keymap.set("n", "<leader>h", ":noh<CR>", { silent = true })
 
 -- git
+-- This is useful for handling merge conflicts
+-- hover over file and use dv to open diffsplit
+-- then use <leader>gH or <leader>gL to get that side's diff
 vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gD", ":Gvdiffsplit!<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gH", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "<leader>gL", "<cmd>diffget //3<CR>")
 
@@ -108,10 +112,10 @@ vim.keymap.set("n", "<leader>gL", "<cmd>diffget //3<CR>")
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
 
 -- open Planner
-vim.keymap.set("n", "<leader>cp", ":e ~/BrainVault/Planner.md<CR>")
+vim.keymap.set("n", "<leader>cp", ":e ~/BrainVault/Planner.md<CR>", { silent = true })
 
 -- markdown preview
-vim.keymap.set("n", "<leader>m", ":MarkdownPreviewToggle<CR>")
+vim.keymap.set("n", "<leader>m", ":MarkdownPreviewToggle<CR>", { silent = true })
 
 -- use the command
 -- :put =execute('mes')
