@@ -6,3 +6,5 @@ vim.cmd([[
     autocmd BufWinEnter ?* silent! loadview
   augroup END
 ]])
+
+-- FIX: toggling nvim-tree with an unamed buffer throws error

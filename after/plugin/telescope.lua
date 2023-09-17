@@ -1,15 +1,14 @@
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local telescope = require('telescope')
+telescope.load_extension("workspaces")
 
-telescope.setup {
+telescope.setup({
   defaults = {
     mappings = {
-      i = {
-        ["<C-w>"] = actions.send_selected_to_qflist + actions.open_qflist,
-      },
       n = {
-        ["<C-w>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        -- FIX: these mappings are not working,
+        ["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist
       },
     }
   },
@@ -25,7 +24,7 @@ telescope.setup {
       }
     }
   }
-}
+})
 
 -- git
 vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
@@ -58,4 +57,3 @@ vim.keymap.set("n", "<leader>fcc", ":Telescope find_files cwd=~/.config/nvim/<CR
 vim.keymap.set("n", "<leader>fcv", ":Telescope find_files cwd=~/BrainVault/<CR>", { silent = true })
 vim.keymap.set("n", "<leader>fcu", ":Telescope find_files cwd=~/Useful_Texts/<CR>", { silent = true })
 
-telescope.load_extension("workspaces")

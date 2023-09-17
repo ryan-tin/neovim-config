@@ -64,3 +64,8 @@ vim.opt.fillchars='eob: '
 -- don't show --INSERT-- in statusline, this info is already shown in lualine
 vim.opt.showmode = false
 -- vim.opt.winbar = "a"
+
+-- resize to the minimum amount of folds to display.
+vim.opt.foldcolumn='auto'
+-- vim.opt.foldcolumn='1'
+vim.opt.foldmethod='manual'

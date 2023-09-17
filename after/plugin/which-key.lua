@@ -101,7 +101,7 @@ wk.register({
     b = "buffers",
     c = {
       name = "cd",
-      d = "cd",
+      d = "cd to directory of current file",
       p = "planner",
     },
     d = {
@@ -161,7 +161,7 @@ wk.register({
       S = "stash",
       t = {
         name = "toggle",
-        b = "line blame",
+        b = "blame",
         w = "word diff",
         d = "deleted"
       },

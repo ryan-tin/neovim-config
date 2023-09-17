@@ -72,6 +72,8 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- use <leader>e to toggle open nvimtree
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { silent = true })
+-- open netrw
+-- vim.keymap.set("n", "<leader>e", ":Lexplore<CR>")
 
 -- buffers
 -- vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })

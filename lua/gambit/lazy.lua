@@ -67,7 +67,6 @@ local plugins = {
   -- ESSENTIALS END
   --
   -- USEFUL
-  'lukas-reineke/indent-blankline.nvim',
   'mfussenegger/nvim-dap',
   "rcarriga/nvim-dap-ui",
   "folke/trouble.nvim",
