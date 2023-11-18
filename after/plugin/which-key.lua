@@ -165,6 +165,7 @@ wk.register({
         w = "word diff",
         d = "deleted"
       },
+      q = "diffs -> quickfix",
       H = "left diffget",
       L = "right diffget",
     },
