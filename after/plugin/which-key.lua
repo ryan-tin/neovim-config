@@ -183,6 +183,7 @@ wk.register({
       i = "implementations"
     },
     m = "markdown preview",
+    o = "Oil",
     p = "paste & delete to void",
     s = "rename",
     t = {
