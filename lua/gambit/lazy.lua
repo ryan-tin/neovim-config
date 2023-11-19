@@ -98,6 +98,7 @@ local plugins = {
   },
   { 'lervag/vimtex', ft = "latex" },
   { 'norcalli/nvim-colorizer.lua' },
+  { 'stevearc/oil.nvim' },
   -- USEFUL END
   --
   -- COSMETIC
