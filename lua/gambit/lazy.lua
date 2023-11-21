@@ -99,6 +99,7 @@ local plugins = {
   { 'lervag/vimtex', ft = "latex" },
   { 'norcalli/nvim-colorizer.lua' },
   { 'stevearc/oil.nvim' },
+  {'akinsho/toggleterm.nvim', version = "*", config = true},
   -- USEFUL END
   --
   -- COSMETIC
