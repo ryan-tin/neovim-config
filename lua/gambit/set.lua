@@ -69,3 +69,6 @@ vim.opt.showmode = false
 vim.opt.foldcolumn='auto'
 -- vim.opt.foldcolumn='1'
 vim.opt.foldmethod='manual'
+
+-- for vertical splits, always split to the right hand side
+vim.opt.splitright = true

@@ -134,7 +134,6 @@ wk.register({
         v = "vault",
         u = "useful texts"
       },
-      f = "find file",
       s = "grep (live)",
       g = "grep (static)",
       p = "previous",

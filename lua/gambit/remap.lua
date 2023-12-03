@@ -45,8 +45,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]])
 
 -- jk to escape
--- vim.keymap.set("i", "kj", "<Esc>")
--- vim.keymap.set("i", "KJ", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "KJ", "<Esc>")
 
 -- what does this do?
 -- Primeagan says never to use Q
@@ -78,8 +78,6 @@ vim.keymap.set("n", "<leader>o", "<cmd>Oil --float<CR>", { silent = true })
 -- vim.keymap.set("n", "<leader>e", ":Lexplore<CR>")
 
 -- buffers
--- vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })
--- vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { silent = true })
@@ -113,8 +111,7 @@ vim.keymap.set("n", "<leader>gH", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "<leader>gL", "<cmd>diffget //3<CR>")
 
 -- save
--- get as close to the original mappings as possible
--- vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
+vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
 
 -- open Planner
 vim.keymap.set("n", "<leader>cp", ":e ~/BrainVault/Planner.md<CR>", { silent = true })
