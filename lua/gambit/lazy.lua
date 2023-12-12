@@ -57,8 +57,6 @@ local plugins = {
       require("nvim-surround").setup() -- empty for defaults
     end
   },
-  'natecraddock/workspaces.nvim',
-  'natecraddock/sessions.nvim',
   -- ESSENTIALS END
   --
   -- USEFUL

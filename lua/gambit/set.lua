@@ -15,7 +15,7 @@ vim.opt.smartindent = true
 vim.opt.showtabline = 1 -- show tabline when there is at least two tabs 
 
 -- no line wrap, true = line wrap, false = no line wrap
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 -- vim will not do backups
 -- but undo tree will have access to long running undos, saved at the dir in line 23

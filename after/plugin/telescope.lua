@@ -1,7 +1,6 @@
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local telescope = require('telescope')
-telescope.load_extension("workspaces")
 
 telescope.setup({
   defaults = {
@@ -43,8 +42,6 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fp', builtin.resume, { silent = true })
 vim.keymap.set('n', '<leader>fg', function() builtin.grep_string({ search = vim.fn.input("Grep > ") }); end)
 vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fw', ":Telescope workspaces<CR>", { silent = true })
--- vim.keymap.set('n', '<leader>fW', ":Telescope workspaces<CR>test", {silent=true}) -- FIX: go to most recent workspace
 
 -- lsp
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { silent = true })

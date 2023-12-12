@@ -97,7 +97,6 @@ wk.setup({
 -- document and/or setup your own mappings
 wk.register({
   ["<leader>"] = {
-    A = "alpha",
     b = "buffers",
     c = {
       name = "cd",
@@ -142,7 +141,6 @@ wk.register({
       r = "references",
       i = "implementations",
       v = "variables/symbols",
-      w = "workspaces",
       -- lsp
     },
     F = "format",
