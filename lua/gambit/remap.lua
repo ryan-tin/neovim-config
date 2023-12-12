@@ -70,12 +70,8 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- makes script (Prime used bash script as the example in the video) into an executable
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- use <leader>e to toggle open nvimtree
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { silent = true })
 -- open Oil nvim
-vim.keymap.set("n", "<leader>o", "<cmd>Oil --float<CR>", { silent = true })
--- open netrw
--- vim.keymap.set("n", "<leader>e", ":Lexplore<CR>")
+vim.keymap.set("n", "<leader>o", "<cmd>Oil<CR>", { silent = true })
 
 -- buffers
 vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })

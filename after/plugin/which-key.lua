@@ -125,7 +125,6 @@ wk.register({
       o = "open log"
     },
     D = "delete to void",
-    e = "tree",
     f = {
       name = "fuzzy (telescope)",
       c = {
@@ -193,7 +192,7 @@ wk.register({
       l = "loc list",
       q = "quickfix",
     },
-    u = "undo Tree",
+    u = "undo tree",
     w = "save",
     x = "close buffer",
     -- X = "close all other buffers",

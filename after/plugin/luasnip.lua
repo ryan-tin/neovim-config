@@ -3,9 +3,6 @@ if not status_ok then
   return
 end
 
--- vim.keymap.set({"i", "s" }, "<Tab>", "<cmd>lua require'luasnip'.jump(1)<CR>")
--- vim.keymap.set({"i", "s" }, "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<CR>")
-
 local s = luasnip.snippet
 local t = luasnip.text_node
 local i = luasnip.insert_node
