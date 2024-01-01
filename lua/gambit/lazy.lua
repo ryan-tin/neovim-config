@@ -57,6 +57,7 @@ local plugins = {
       require("nvim-surround").setup() -- empty for defaults
     end
   },
+  "github/copilot.vim",
   -- ESSENTIALS END
   --
   -- USEFUL

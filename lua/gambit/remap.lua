@@ -112,9 +112,6 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
 -- open Planner
 vim.keymap.set("n", "<leader>cp", ":e ~/BrainVault/Planner.md<CR>", { silent = true })
 
--- markdown preview
-vim.keymap.set("n", "<leader>m", ":MarkdownPreviewToggle<CR>", { silent = true })
-
 -- use the command
 -- :put =execute('mes')
 -- to put all messages into the current buffer

@@ -41,7 +41,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, opts)   -- quickly rename a symbol
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)   -- help with function signature, in insert mode.
+  vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, opts)   -- help with function signature, in normal mode.
 end)
 
 lsp.setup()
@@ -66,11 +66,11 @@ cmp.setup({
     -- Navigate between snippet placeholder
     ['<C-f>'] = cmp_action.luasnip_jump_forward(),
     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-    -- disable completion with tab (helps with copilot setup?)
-    ['<Tab>'] = nil,
-    ['<S-Tab>'] = nil
+    -- disable completion with tab (helps with copilot setup)
+    ['<Tab>'] = vim.NIL,
+    ['<S-Tab>'] = vim.NIL
   },
   experimental = {
-    ghost_text = true
+    ghost_text = false -- conflicts with copilot
   }
 })

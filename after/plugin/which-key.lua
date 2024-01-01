@@ -1,7 +1,7 @@
 local wk = require("which-key")
 
 vim.o.timeout = true
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 2000
 
 wk.setup({
   plugins = {
@@ -9,10 +9,8 @@ wk.setup({
     registers = true,     -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
-    spelling = {
-      enabled = true,         -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20,       -- how many suggestions should be shown in the list?
-    },
+    -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+    spelling = { enabled = false, },
     presets = {
       operators = true,          -- adds help for operators like d, y, ...
       motions = true,            -- adds help for motions
