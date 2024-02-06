@@ -12,10 +12,14 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true -- spaces will be used to fill the amount of whitespace of the tab.
 
 vim.opt.smartindent = true
-vim.opt.showtabline = 1 -- show tabline when there is at least two tabs 
+vim.opt.showtabline = 1 -- show tabline when there is at least two tabs
 
 -- no line wrap, true = line wrap, false = no line wrap
 vim.opt.wrap = false
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = { '*.md' },
+  command = 'setlocal wrap'
+})
 
 -- vim will not do backups
 -- but undo tree will have access to long running undos, saved at the dir in line 23
@@ -59,16 +63,16 @@ vim.opt.fixeol = false
 vim.opt.confirm = true
 
 -- remove EOB char, default is ~
-vim.opt.fillchars='eob: '
+vim.opt.fillchars = 'eob: '
 
 -- don't show --INSERT-- in statusline, this info is already shown in lualine
 vim.opt.showmode = false
 -- vim.opt.winbar = "a"
 
 -- resize to the minimum amount of folds to display.
-vim.opt.foldcolumn='auto'
+vim.opt.foldcolumn = 'auto'
 -- vim.opt.foldcolumn='1'
-vim.opt.foldmethod='manual'
+vim.opt.foldmethod = 'manual'
 
 -- for vertical splits, always split to the right hand side
 vim.opt.splitright = true

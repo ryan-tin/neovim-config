@@ -31,7 +31,7 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- TODO: center after jump
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<leader>ls", vim.lsp.buf.workspace_symbol, opts)   -- search for a symbol
   vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, opts)
@@ -57,7 +57,7 @@ cmp.setup({
   mapping = {
     -- Enter / <C-y> to confirm completion
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-j>'] = cmp.mapping.confirm({ select = true }),
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
     -- move through cmp menu

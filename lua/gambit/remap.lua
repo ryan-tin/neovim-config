@@ -66,7 +66,7 @@ vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- using leader s will let us replace the word we are on
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- makes script (Prime used bash script as the example in the video) into an executable
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
@@ -112,9 +112,8 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
 -- open Planner
 vim.keymap.set("n", "<leader>cp", ":e ~/BrainVault/Planner.md<CR>", { silent = true })
 
--- use the command
--- :put =execute('mes')
 -- to put all messages into the current buffer
---
+vim.keymap.set("n", "<leader>M", ":put =execute('mes')<CR>")
+-- TODO: shortcut to put last X lines in the current buffer
 -- :{count}mes[sages]   Show the {count} most recent messages
 -- :mes[sages] clear    Clear all messages

@@ -15,7 +15,7 @@ local plugins = {
   -- ESSENTIALS
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
+    tag = '0.1.4',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
   'ThePrimeagen/harpoon',
@@ -57,7 +57,6 @@ local plugins = {
       require("nvim-surround").setup() -- empty for defaults
     end
   },
-  "github/copilot.vim",
   -- ESSENTIALS END
   --
   -- USEFUL
@@ -65,15 +64,33 @@ local plugins = {
   'numToStr/Comment.nvim',
   'folke/which-key.nvim',
   'stevearc/oil.nvim',
-  { 'akinsho/toggleterm.nvim', version = "*", config = true },
   -- USEFUL END
-  --
+
   -- COSMETIC
+  {
+    -- TODO: add which keywords to use here
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    -- :TodoQuickFix uses quickfist list to show all todos in the project
+    -- :TodoLocList to show all Todos in the project
+    -- :TodoTrouble to list all Todos in Trouble
+    -- :TodoTelescope to search through all project todos with Telescope
+  },
   "folke/zen-mode.nvim",
-  'goolord/alpha-nvim',
   'nvim-lualine/lualine.nvim',
-  { 'rebelot/kanagawa.nvim',   lazy = false,  priority = 1000 },
+  { 'rebelot/kanagawa.nvim', lazy = false, priority = 1000 },
   -- COSMETIC END
+
+  -- EXPERIMENTAL
+  -- "github/copilot.vim", -- trial expired
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    ft = "markdown",
+  },
+  -- something with latex?
+  { 'jpalardy/vim-slime' },
+  -- EXPERIMENTAL END
 }
 
 local opts = {}
