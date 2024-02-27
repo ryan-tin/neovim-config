@@ -64,30 +64,24 @@ local plugins = {
   'numToStr/Comment.nvim',
   'folke/which-key.nvim',
   'stevearc/oil.nvim',
+  'nvim-tree/nvim-tree.lua',
   -- USEFUL END
 
   -- COSMETIC
-  {
-    -- TODO: add which keywords to use here
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    -- :TodoQuickFix uses quickfist list to show all todos in the project
-    -- :TodoLocList to show all Todos in the project
-    -- :TodoTrouble to list all Todos in Trouble
-    -- :TodoTelescope to search through all project todos with Telescope
-  },
   "folke/zen-mode.nvim",
   'nvim-lualine/lualine.nvim',
   { 'rebelot/kanagawa.nvim', lazy = false, priority = 1000 },
+  { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   -- COSMETIC END
 
   -- EXPERIMENTAL
   -- "github/copilot.vim", -- trial expired
-  {
-    "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    ft = "markdown",
-  },
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   build = "cd app && npm install",
+  --   ft = "markdown",
+  -- },
   -- something with latex?
   { 'jpalardy/vim-slime' },
   -- EXPERIMENTAL END

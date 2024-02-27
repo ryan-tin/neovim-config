@@ -1,7 +1,7 @@
 local wk = require("which-key")
 
 vim.o.timeout = true
-vim.o.timeoutlen = 2000
+vim.o.timeoutlen = 2000 -- 2 seconds
 
 wk.setup({
   plugins = {
@@ -10,7 +10,7 @@ wk.setup({
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
     -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-    spelling = { enabled = false, },
+    spelling = { enabled = true, },
     presets = {
       operators = true,          -- adds help for operators like d, y, ...
       motions = true,            -- adds help for motions
@@ -132,7 +132,7 @@ wk.register({
       F = "file commits",
       h = "hunks",
       s = "status",
-      S = "stash",
+      S = "Stash (view)",
       t = {
         name = "toggle",
         b = "blame",

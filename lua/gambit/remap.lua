@@ -52,12 +52,13 @@ vim.keymap.set("i", "KJ", "<Esc>")
 -- Primeagan says never to use Q
 vim.keymap.set("n", "Q", "<nop>")
 
--- not sure what this does, but it uses tmux
--- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+-- open a new split to the right in the same directory
+vim.keymap.set("n", "<leader>N", ":silent !tmux split-window -h; cd < pwd<CR>")
 
 -- quick format page
 vim.keymap.set("n", "<leader>F", vim.lsp.buf.format)
 
+-- TODO: use this more!
 -- quick fix navigation
 vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
@@ -76,6 +77,7 @@ vim.keymap.set("n", "<leader>o", "<cmd>Oil<CR>", { silent = true })
 -- buffers
 vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<C-x>", "<cmd>bd!<CR>", { silent = true })
 vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { silent = true })
 -- vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#|bd#<CR>", { silent = true }) -- close all buffers except current one
 
@@ -101,10 +103,11 @@ vim.keymap.set("n", "<leader>h", ":noh<CR>", { silent = true })
 -- This is useful for handling merge conflicts
 -- hover over file and use dv to open diffsplit
 -- then use <leader>gH or <leader>gL to get that side's diff
-vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gD", ":Gvdiffsplit!<CR>", { silent = true })
 vim.keymap.set("n", "<leader>gH", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "<leader>gL", "<cmd>diffget //3<CR>")
+-- the normal single file diff split
+vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR><C-w>l", { silent = true })
 
 -- save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
