@@ -64,7 +64,6 @@ local plugins = {
   'numToStr/Comment.nvim',
   'folke/which-key.nvim',
   'stevearc/oil.nvim',
-  'nvim-tree/nvim-tree.lua',
   -- USEFUL END
 
   -- COSMETIC
