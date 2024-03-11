@@ -6,20 +6,17 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 -- 4 space indents
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+local shiftwidth = 2
+vim.opt.tabstop = shiftwidth
+vim.opt.softtabstop = shiftwidth
+vim.opt.shiftwidth = shiftwidth
 vim.opt.expandtab = true -- spaces will be used to fill the amount of whitespace of the tab.
 
 vim.opt.smartindent = true
 vim.opt.showtabline = 1 -- show tabline when there is at least two tabs
 
--- no line wrap, true = line wrap, false = no line wrap
+-- no line wrap
 vim.opt.wrap = false
-vim.api.nvim_create_autocmd('BufEnter', {
-  pattern = { '*.md' },
-  command = 'setlocal wrap'
-})
 
 -- vim will not do backups
 -- but undo tree will have access to long running undos, saved at the dir in line 23
@@ -47,7 +44,9 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 -- ignore case in search patterns Vim
+-- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- highlight the current line
 vim.opt.cursorline = true
@@ -64,8 +63,13 @@ vim.opt.confirm = true
 
 -- remove EOB char, default is ~
 vim.opt.fillchars = 'eob: '
+-- Sets how neovim will display certain whitespace in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- don't show --INSERT-- in statusline, this info is already shown in lualine
+-- don't show mode in statusline, this info is already shown in lualine
 vim.opt.showmode = false
 -- vim.opt.winbar = "a"
 
@@ -74,5 +78,22 @@ vim.opt.foldcolumn = 'auto'
 -- vim.opt.foldcolumn='1'
 vim.opt.foldmethod = 'manual'
 
--- for vertical splits, always split to the right hand side
+-- Control how splits should open by default
+-- vertical splits defaults to right side
+-- horizontal splits defaults to top
 vim.opt.splitright = true
+vim.opt.splitbelow = false
+
+-- needed for gx plugin
+vim.g.netrw_nogx = 1
+
+vim.g.have_nerd_font = true
+
+-- Sync clipboard between OS and Neovim.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.opt.clipboard = 'unnamedplus'
+
+-- Enable break indent
+vim.opt.breakindent = true
+

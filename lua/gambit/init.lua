@@ -1,3 +1,4 @@
-require("gambit.remap")
-require("gambit.set")
 require("gambit.lazy")
+require("gambit.set")
+require("gambit.autocmd")
+require("gambit.remap")

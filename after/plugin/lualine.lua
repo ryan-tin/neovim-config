@@ -20,14 +20,15 @@ local diagnostics = {
 local diff = {
   "diff",
   colored = true,
-  symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+  -- symbols = { added = " ", modified = " ", removed = " " },
+  symbols = { added = "+", modified = "~", removed = "-" },
   cond = hide_in_width
 }
 
 local mode = {
   "mode",
   fmt = function(str)
-    return "-- " .. str .. " --"
+    return string.sub(str, 0, 1) .. string.lower(string.sub(str, 2))
   end,
 }
 
@@ -37,7 +38,6 @@ local filetype = {
   icon = nil,
 }
 
--- may be useful in the future
 local branch = {
   "branch",
   icon = "",
@@ -47,10 +47,14 @@ local branch = {
 
 local location = {
   "location",
-  -- padding = 0,
+  padding = 0,
 }
 
--- cool function for progress
+local filename = {
+  'filename',
+  path = 1,
+}
+
 local progress = function()
   local current_line = vim.fn.line(".")
   local total_lines = vim.fn.line("$")
@@ -66,16 +70,16 @@ lualine.setup({
     theme = "auto",
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
-    disabled_filetypes = { "dashboard", "Outline" },
+    disabled_filetypes = { "dashboard", "Outline", "NvimTree" },
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { "mode" },
+    lualine_a = { mode },
     lualine_b = { branch },
-    lualine_c = { "filename", diff },
+    lualine_c = { diff, filename },
     lualine_x = { diagnostics },
     lualine_y = { filetype },
-    lualine_z = { location, progress },
+    lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = {},

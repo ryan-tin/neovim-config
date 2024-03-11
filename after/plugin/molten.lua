@@ -1,0 +1,34 @@
+-- -- use jupytext to convert ipynb files to markdown
+-- require("jupytext").setup({
+--     style = "markdown",
+--     output_extension = "md",
+--     force_ft = "markdown",
+-- })
+--
+-- require("jupytext").setup()
+--
+-- -- Molten settings
+-- vim.g.molten_virt_text_output	= true -- always show virtual ouptut under run cells
+-- vim.g.molten_wrap_output = false -- optional, I like wrapping. works for virt text and the output window
+-- vim.g.molten_virt_lines_off_by_1 = true -- this will make it so the output shows up below the \`\`\` cell delimiter
+--
+-- vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>", { silent = true, desc = "Initialize the plugin" })
+--
+-- -- Evaluating Cells
+-- vim.keymap.set("n", "<leader>e", ":MoltenEvaluateOperator<CR>", { silent = true, desc = "run operator selection" })
+-- vim.keymap.set("n", "<leader>rl", ":MoltenEvaluateLine<CR>", { silent = true, desc = "evaluate line" })
+-- vim.keymap.set("n", "<leader>rr", ":MoltenReevaluateCell<CR>", { silent = true, desc = "re-evaluate cell" })
+-- vim.keymap.set("v", "<leader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "evaluate visual selection" })
+--
+-- -- Output
+-- vim.keymap.set("n", "<leader>mh", ":MoltenHideOutput<CR>", { silent = true, desc = "hide output" })
+-- vim.keymap.set("n", "<leader>mo", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "show/enter output" })
+--
+-- -- Editing Cells
+-- vim.keymap.set("n", "<leader>md", ":MoltenDelete<CR>", { silent = true, desc = "molten delete cell" })
+--
+-- -- unused
+-- vim.keymap.set("n", "<leader>mx", ":MoltenOpenInBrowser<CR>", { desc = "open output in browser", silent = true })
+--
+-- -- TODO: how to save/load state
+-- -- how to create a new file
