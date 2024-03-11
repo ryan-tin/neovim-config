@@ -223,12 +223,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.keymap.set("n", "<leader>E", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle Tre[E]" })
 
 -- Harpoon
-vim.keymap.set("n", "<leader>i", require('harpoon.mark').add_file, { desc = "Harpoon F[I]le" })
-vim.keymap.set("n", "<C-e>", require('harpoon.ui').toggle_quick_menu)
-vim.keymap.set("n", "<C-j>", function() require('harpoon.ui').nav_file(1) end)
-vim.keymap.set("n", "<C-k>", function() require('harpoon.ui').nav_file(2) end)
-vim.keymap.set("n", "<C-l>", function() require('harpoon.ui').nav_file(3) end)
-vim.keymap.set("n", "<C-h>", function() require('harpoon.ui').nav_file(4) end)
+vim.keymap.set("n", "<leader>i", function() require("harpoon"):list():append() end)
+vim.keymap.set("n", "<C-e>", function() require("harpoon").ui:toggle_quick_menu(require('harpoon'):list()) end)
+vim.keymap.set("n", "<C-j>", function() require("harpoon"):list():select(1) end)
+vim.keymap.set("n", "<C-k>", function() require("harpoon"):list():select(2) end)
+vim.keymap.set("n", "<C-l>", function() require("harpoon"):list():select(3) end)
+vim.keymap.set("n", "<C-h>", function() require("harpoon"):list():select(4) end)
 
 -- Trouble
 vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true, desc = "[T]rouble [T]oggle" })
