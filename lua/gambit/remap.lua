@@ -48,6 +48,10 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "[D]elete to void" }
 -- vim.keymap.set("i", "kj", "<Esc>")
 -- vim.keymap.set("i", "KJ", "<Esc>")
 
+-- <C-f> and <C-b> to move around in normal mode
+-- vim.keymap.set('i', '<C-f>', '<C-o>l')
+-- vim.keymap.set('i', '<C-b>', '<C-o>h')
+
 -- what does this do?
 -- Primeagan says never to use Q
 vim.keymap.set("n", "Q", "<nop>")
@@ -57,7 +61,8 @@ vim.keymap.set("n", "<leader>cw", ":silent !tmux split-window -dh<CR>", { desc =
 -- open new vsplit and python interpreter
 vim.keymap.set("n", "<leader>cp", ":vsplit term://python3<cr><C-W>h",
   { silent = true, desc = "[C]reate [P]ython terminal" })
-vim.keymap.set("n", "<leader>ci", ":vsplit term://ipython<cr>", { silent = true, desc = "[C]reate [I]Python terminal" })
+vim.keymap.set("n", "<leader>ci", ":vsplit term://ipython<cr><C-w>h",
+  { silent = true, desc = "[C]reate [I]Python terminal" })
 
 -- quick format page
 vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "[F]ormat" })
@@ -114,8 +119,10 @@ vim.keymap.set("n", "<leader>gth", ":Gitsigns preview_hunk_inline<CR>", { silent
 -- vim.keymap.set("n", "<leader>gf", ":Gitsigns preview_hunk<CR>", { silent = true })
 
 -- Git Toggles
-vim.keymap.set("n", "<leader>gtb", ":Gitsigns toggle_current_line_blame<CR>", { silent = true, desc = "[G]it [T]oggle [B]lame" })
-vim.keymap.set("n", "<leader>gtw", ":Gitsigns toggle_word_diff<CR>", { silent = true, desc = "[G]it [T]oggle [W]ord Diff" })
+vim.keymap.set("n", "<leader>gtb", ":Gitsigns toggle_current_line_blame<CR>",
+  { silent = true, desc = "[G]it [T]oggle [B]lame" })
+vim.keymap.set("n", "<leader>gtw", ":Gitsigns toggle_word_diff<CR>",
+  { silent = true, desc = "[G]it [T]oggle [W]ord Diff" })
 vim.keymap.set("n", "<leader>gtd", ":Gitsigns toggle_deleted<CR>", { silent = true, desc = "[G]it [T]oggle [D]eleted" })
 
 -- Git Telescopes Searches
@@ -149,7 +156,9 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sp', require('telescope.builtin').resume, { silent = true, desc = "[S]earch [P]revious" })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
 vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
-vim.keymap.set('n', '<leader>sg', function() require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") }); end,
+vim.keymap.set('n', '<leader>sg', function()
+    require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") });
+  end,
   { desc = "[S]earch Static [G]rep)" })
 vim.keymap.set('n', '<leader>sl', require('telescope.builtin').live_grep, { desc = "[S]earch [L]ive Grep" })
 
@@ -184,7 +193,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map("n", "<leader>e", vim.diagnostic.open_float, "Show Diagostic [E]rror Message")
     -- Rename the variable under your cursor
     --  Most Language Servers support renaming across files, etc.
-    map('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+    map('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
     -- Execute a code action, usually your cursor needs to be on top of an error
     -- or a suggestion from your LSP for this to activate.
     map('n', '<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
@@ -223,7 +232,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.keymap.set("n", "<leader>E", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle Tre[E]" })
 
 -- Harpoon
-vim.keymap.set("n", "<leader>i", function() require("harpoon"):list():append() end)
+vim.keymap.set("n", "<leader>i", function() require("harpoon"):list():append() end, { desc = "Harpoon F[I]le" })
 vim.keymap.set("n", "<C-e>", function() require("harpoon").ui:toggle_quick_menu(require('harpoon'):list()) end)
 vim.keymap.set("n", "<C-j>", function() require("harpoon"):list():select(1) end)
 vim.keymap.set("n", "<C-k>", function() require("harpoon"):list():select(2) end)
@@ -231,13 +240,22 @@ vim.keymap.set("n", "<C-l>", function() require("harpoon"):list():select(3) end)
 vim.keymap.set("n", "<C-h>", function() require("harpoon"):list():select(4) end)
 
 -- Trouble
-vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true, desc = "[T]rouble [T]oggle" })
-vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true, desc = "[T]rouble [W]orkspace Diagnostics" })
-vim.keymap.set("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>", { silent = true, noremap = true, desc = "[T]rouble [D]ocument Diagnostics" })
-vim.keymap.set("n", "<leader>tl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true, desc = "[T]rouble [L]oclist" })
-vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true, desc = "[T]rouble [Q]uickfix" })
+vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<cr>",
+  { silent = true, noremap = true, desc = "[T]rouble [T]oggle" })
+vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
+  { silent = true, noremap = true, desc = "[T]rouble [W]orkspace Diagnostics" })
+vim.keymap.set("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>",
+  { silent = true, noremap = true, desc = "[T]rouble [D]ocument Diagnostics" })
+vim.keymap.set("n", "<leader>tl", "<cmd>TroubleToggle loclist<cr>",
+  { silent = true, noremap = true, desc = "[T]rouble [L]oclist" })
+vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>",
+  { silent = true, noremap = true, desc = "[T]rouble [Q]uickfix" })
 
 vim.keymap.set("n", "<leader>z", ":ZenMode<CR>", { silent = true, desc = "[Z]en mode" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "[U]ndo tree" })
-vim.keymap.set('n', '<leader>qp', require('quarto').quartoPreview, { silent = true, noremap = true, desc = "[Q]uarto [P]review" })
+vim.keymap.set('n', '<leader>qp', require('quarto').quartoPreview,
+  { silent = true, noremap = true, desc = "[Q]uarto [P]review" })
 vim.keymap.set("n", "<leader>a", ":Alpha<CR>", { silent = true, desc = "[A]lpha" })
+
+-- TEST: conflicts with repeat last f jump
+-- vim.keymap.set("n", ";", ":", { silent = true })

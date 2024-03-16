@@ -16,8 +16,8 @@ wk.register({
     p = { name = "[P]aste" },
     l = { name = "[L]sp" },
     t = { name = "[T]rouble", },
-    -- m = { name = "[M]olten" },
+    r = { name = "[R]ename" }, -- FIX: not showing
     c = { name = "[C]reate" },
-    r = { name = "[R]ename" }
+    -- m = { name = "[M]olten" },
   },
 })

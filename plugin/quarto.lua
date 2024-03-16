@@ -26,9 +26,9 @@ quarto.setup {
     hover = "K",
     definition = "gd",
     type_definition = "gD",
-    rename = "<leader>ln",
-    format = "<leader>f",
-    references = "gr",
+    rename = "<leader>rn",
+    format = "<leader>F",
+    references = "sr",
     document_symbols = "gS",
   }
 }

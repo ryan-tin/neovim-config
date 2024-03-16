@@ -92,7 +92,7 @@ cmp.setup({
     ['<S-Tab>'] = vim.NIL
   },
   experimental = {
-    ghost_text = true -- conflicts with copilot
+    ghost_text = false -- this conflicts with copilot
   },
   sources = {
     { name = "nvim_lsp" },

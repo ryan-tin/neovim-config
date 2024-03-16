@@ -80,9 +80,10 @@ local plugins = {
       },
     },
   },
-  -- TEST: skill issue? Learn to type?
+  -- skill issue? Learn to type
   -- 'windwp/nvim-autopairs',
   { "kylechui/nvim-surround", version = "*",        opts = {} },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     "chrishrb/gx.nvim",
     event = { "BufEnter" },
@@ -113,43 +114,85 @@ local plugins = {
       delete_to_trash = true,
     }
   },
-  { "folke/zen-mode.nvim", opts = {} },
-  'nvim-lualine/lualine.nvim',
-  -- { 'rebelot/kanagawa.nvim', lazy = false, priority = 1000 },
+  { "folke/zen-mode.nvim",       opts = {} },
+  { 'nvim-lualine/lualine.nvim', },
+
+  -- COLORSCHEMES
   {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
+    'rebelot/kanagawa.nvim',
+    opts = {
+      overrides = function(colors)
+        local theme = colors.theme
+        return {
+          -- Transparent floating windows
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          FloatTitle = { bg = "none" },
+          -- Save an hlgroup with dark background and dimmed foreground
+          -- so that you can use it where your still want darker windows.
+          -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+          NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+          -- Popular plugins that open floats will link to NormalFloat by default;
+          -- set their background accordingly if you wish to keep them dark and borderless
+          LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+          MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+          -- Borderless, block like modern Telescope UI
+          -- TelescopeTitle = { fg = theme.ui.special, bold = true },
+          -- TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+          -- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+          -- TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+          -- TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+          -- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+          -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+
+          -- Dark completion (popup menu)
+          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+          PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+          PmenuSbar = { bg = theme.ui.bg_m1 },
+          PmenuThumb = { bg = theme.ui.bg_p2 },
+        }
+      end,
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none" -- Remove the background of LineNr, {Sign,Fold}Column and friends
+            }
+          }
+        }
+      }
+    },
     init = function()
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme('kanagawa-wave')
     end
   },
+  -- { "folke/tokyonight.nvim", },
+  -- {
+  --   "sainnhe/gruvbox-material",
+  --   lazy = false,
+  --   priority = 1000,
+  --   init = function()
+  --     vim.g.background = 'dark'
+  --     vim.g.gruvbox_material_background = 'hard'
+  --     vim.g.gruvbox_material_better_performance = 1
+  --     vim.g.gruvbox_material_transparent_background = 2
+  --     vim.cmd.colorscheme('gruvbox-material')
+  --   end
+  -- },
+  -- {
+  --   "sainnhe/everforest",
+  --   lazy = false,
+  --   priority = 1000,
+  --   init = function()
+  --     vim.g.background = 'dark'
+  --     vim.g.everforest_background = 'hard'
+  --     vim.g.everforest_better_performance = 1
+  --     vim.cmd.colorscheme('everforest') -- this must be last
+  --   end
+  -- },
   -- "github/copilot.vim", -- trial expired
   { 'jpalardy/vim-slime' },
-  -- JUPYTER NOTEBOOK
-  -- {
-  --   "GCBallesteros/jupytext.nvim",
-  --   config = true,
-  --   lazy = false,
-  -- },
-  -- {
-  --   "benlubas/molten-nvim",
-  --   version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
-  --   build = ":UpdateRemotePlugins",
-  -- },
-  -- {
-  --   "3rd/image.nvim",
-  --   opts = {
-  --     backend = "kitty", -- whatever backend you would like to use
-  --     max_width = 100,
-  --     max_height = 12,
-  --     max_height_window_percentage = math.huge,
-  --     max_width_window_percentage = math.huge,
-  --     window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
-  --     window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-  --   },
-  -- },
-  -- END JUPYTER NOTEBOOK
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",

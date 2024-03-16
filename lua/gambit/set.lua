@@ -5,7 +5,7 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
--- 4 space indents
+-- 2 space indents
 local shiftwidth = 2
 vim.opt.tabstop = shiftwidth
 vim.opt.softtabstop = shiftwidth
@@ -15,8 +15,10 @@ vim.opt.expandtab = true -- spaces will be used to fill the amount of whitespace
 vim.opt.smartindent = true
 vim.opt.showtabline = 1 -- show tabline when there is at least two tabs
 
--- no line wrap
-vim.opt.wrap = false
+-- line wrap
+vim.opt.wrap = true
+-- Enable break indent: line wraps will have the same indentation as the primary line
+vim.opt.breakindent = true
 
 -- vim will not do backups
 -- but undo tree will have access to long running undos, saved at the dir in line 23
@@ -93,7 +95,3 @@ vim.g.have_nerd_font = true
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.opt.breakindent = true
-
