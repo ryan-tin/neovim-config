@@ -257,5 +257,30 @@ vim.keymap.set('n', '<leader>qp', require('quarto').quartoPreview,
   { silent = true, noremap = true, desc = "[Q]uarto [P]review" })
 vim.keymap.set("n", "<leader>a", ":Alpha<CR>", { silent = true, desc = "[A]lpha" })
 
--- TEST: conflicts with repeat last f jump
+-- don't type :
+-- FIX: conflicts with repeat last f jump
 -- vim.keymap.set("n", ";", ":", { silent = true })
+
+-- DAP
+vim.keymap.set('n', '<F5>', function() require('dap').continue() end, { desc = "Continue" })
+vim.keymap.set('n', '<F10>', function() require('dap').step_over() end, { desc = "Step Over" })
+vim.keymap.set('n', '<F11>', function() require('dap').step_into() end, { desc = "Step Into" })
+vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, { desc = "Step Out" })
+vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, { desc = "Toggle [B]reakpoint" })
+vim.keymap.set('n', '<leader>dr', function() require('dapui').open({ reset = true, silent = true }) end,
+  { desc = "[D]apUI [R]eset" })
+vim.keymap.set('n', '<Leader>dt', function() require('dap').terminate() end, { desc = "[D]ap [T]erminate" })
+vim.keymap.set('n', '<Leader>dm',
+  function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+  { desc = "[D]ap Log Point [M]essage" })
+vim.keymap.set('n', '<Leader>dR', function() require('dap').repl.open() end, { desc = "[D]ap [R]epl Open" })
+vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end, { desc = "[D]ap Run [L]ast" })
+--DAPUI
+vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function() require('dap.ui.widgets').hover() end,
+  { desc = "[D]ap Widget [H]over" })
+vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function() require('dap.ui.widgets').preview() end,
+  { desc = "[D]ap Widget [P]review" })
+vim.keymap.set('n', '<Leader>df', function() local widgets = require('dap.ui.widgets') widgets.centered_float(widgets.frames) end, { desc = "[D]ap [W]idget [F]rames" })
+vim.keymap.set('n', '<Leader>ds', function() local widgets = require('dap.ui.widgets') widgets.centered_float(widgets.scopes) end, { desc = "[D]ap [W]idget [S]copes" })
+
+vim.keymap.set('n', '<Leader>mp', ':MarkdownPreview<CR>', {desc = "[M]arkdown [P]review"})

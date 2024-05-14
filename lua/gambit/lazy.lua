@@ -83,7 +83,7 @@ local plugins = {
   -- skill issue? Learn to type
   -- 'windwp/nvim-autopairs',
   { "kylechui/nvim-surround", version = "*",        opts = {} },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     "chrishrb/gx.nvim",
     event = { "BufEnter" },
@@ -94,7 +94,31 @@ local plugins = {
       }
     },
   },
-  { 'folke/trouble.nvim',     opts = { signs = {} } },
+  { "mfussenegger/nvim-dap", },
+  {
+    "rcarriga/nvim-dap-ui",
+    opts = {},
+    dependencies = {
+      "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"
+    },
+    event = "VeryLazy"
+  }, -- is neotest needed?
+  {
+    'mfussenegger/nvim-dap-python',
+    init = function( --[[  ]])
+      require('dap-python').setup(vim.fn.stdpath('data') .. '/mason/packages/debugpy/venv/bin/python')
+    end,
+    -- default test runner is unittest. This can be changed see github repo
+  },
+  {
+    "folke/neodev.nvim",
+    -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+    -- is recommended by dap ui
+    opts = {
+      library = { plugins = { "nvim-dap-ui" }, types = true },
+    }
+  },
+  { 'folke/trouble.nvim',   opts = { signs = {} } },
   { 'folke/which-key.nvim', },
   {
     'numToStr/Comment.nvim',
