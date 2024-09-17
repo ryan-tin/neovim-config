@@ -47,7 +47,7 @@ local branch = {
 
 local location = {
   "location",
-  padding = 0,
+  padding = 1,
 }
 
 local filename = {
@@ -55,13 +55,31 @@ local filename = {
   path = 1,
 }
 
-local progress = function()
-  local current_line = vim.fn.line(".")
-  local total_lines = vim.fn.line("$")
-  local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-  local line_ratio = current_line / total_lines
-  local index = math.ceil(line_ratio * #chars)
-  return chars[index]
+local progress = {
+  'progress',
+  -- padding = {
+  --   left = 0,
+  --   right = 1
+  -- }
+  padding = 1
+}
+
+-- local progress = function()
+--   local current_line = vim.fn.line(".")
+--   local total_lines = vim.fn.line("$")
+--   local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+--   local line_ratio = current_line / total_lines
+--   local index = math.ceil(line_ratio * #chars)
+--   return chars[index]
+-- end
+
+local function selectionCount()
+	local isVisualMode = vim.fn.mode():find("[Vv]")
+	if not isVisualMode then return "" end
+	local starts = vim.fn.line("v")
+	local ends = vim.fn.line(".")
+	local lines = starts <= ends and ends - starts + 1 or starts - ends + 1
+	return "/ " .. tostring(lines) .. "L " .. tostring(vim.fn.wordcount().visual_chars) .. "C"
 end
 
 lualine.setup({
@@ -77,18 +95,18 @@ lualine.setup({
     lualine_a = { mode },
     lualine_b = { branch },
     lualine_c = { diff, filename },
-    lualine_x = { diagnostics },
+    lualine_x = { 'searchcount', diagnostics },
     lualine_y = { filetype },
-    lualine_z = { "location" },
+    lualine_z = { location, progress },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filename" },
+    lualine_c = { filename },
     lualine_x = { "location" },
     lualine_y = {},
     lualine_z = {},
   },
   tabline = {},
-  extensions = {},
+  extensions = { "nvim-dap-ui" },
 })

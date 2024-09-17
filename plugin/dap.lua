@@ -14,22 +14,25 @@ dap.adapters.codelldb = {
     -- CHANGE THIS to your path!
     -- command = '/absolute/path/to/codelldb/extension/adapter/codelldb',
     command = '/Users/ryantin/.local/share/nvim/mason/bin/codelldb',
-    args = {"--port", "${port}"},
-
-    -- On windows you may have to uncomment this:
-    -- detached = false,
-  }
+    args = { "--port", "${port}" },
+  },
 }
+
 
 dap.configurations.cpp = {
   {
-    name = "Launch file",
+    name = "Codelldb: Launch file",
     type = "codelldb",
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/main', 'file')
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
+    preRunCommands = {
+      'breakpoint delete cpp_exception',
+    }
   },
 }
+
+dap.configurations.objcpp = dap.configurations.cpp

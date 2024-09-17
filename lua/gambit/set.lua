@@ -1,9 +1,15 @@
 -- vim.opt.guicursor = "" --fat cursor
 -- commenting this out brought the slim cursor back
 
+-- hide command line when its not being used
+vim.opt.cmdheight = 0;
+
 -- line numbers and relative line numbers activated
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.numberwidth = 1 -- gutter width. small gutters
+-- 80 width column to remind not have too much on one line, use "" to remove line
+vim.opt.colorcolumn = "85"
 
 -- 2 space indents
 local shiftwidth = 2
@@ -12,11 +18,12 @@ vim.opt.softtabstop = shiftwidth
 vim.opt.shiftwidth = shiftwidth
 vim.opt.expandtab = true -- spaces will be used to fill the amount of whitespace of the tab.
 
+vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.showtabline = 1 -- show tabline when there is at least two tabs
 
 -- line wrap
-vim.opt.wrap = true
+vim.opt.wrap = false
 -- Enable break indent: line wraps will have the same indentation as the primary line
 vim.opt.breakindent = true
 
@@ -42,9 +49,6 @@ vim.opt.isfname:append("@-@")
 -- fast update time
 vim.opt.updatetime = 50
 
--- 80 width column to remind not have too much on one line, use "" to remove line
-vim.opt.colorcolumn = "80"
-
 -- ignore case in search patterns Vim
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
@@ -52,6 +56,7 @@ vim.opt.smartcase = true
 
 -- highlight the current line
 vim.opt.cursorline = true
+-- vim.opt.cursorcolumn = true
 
 -- allow mouse
 vim.opt.mouse = "a"
@@ -94,4 +99,4 @@ vim.g.have_nerd_font = true
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'

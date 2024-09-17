@@ -20,8 +20,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- return jump, but cursor stays in the middle
 vim.keymap.set("n", "<C-o>", "<C-o>zz")
 
--- go do definition jump, but cursor stays in the middle
--- vim.keymap.set("n", "gd", "gdzz")
+-- go to definition/declaration jump, but cursor stays in the middle
+vim.keymap.set("n", "gd", "gdzz")
+vim.keymap.set("n", "gD", "gDzz")
 
 -- search terms stay in the middle
 vim.keymap.set("n", "n", "nzzzv")
@@ -45,8 +46,9 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "[Y]ank line to clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "[D]elete to void" })
 
 -- jk to escape
--- vim.keymap.set("i", "kj", "<Esc>")
--- vim.keymap.set("i", "KJ", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "KJ", "<Esc>")
+vim.keymap.set("i", "Kj", "<Esc>")
 
 -- <C-f> and <C-b> to move around in normal mode
 -- vim.keymap.set('i', '<C-f>', '<C-o>l')
@@ -56,13 +58,16 @@ vim.keymap.set({ "n", "v" }, "<leader>D", [["_d]], { desc = "[D]elete to void" }
 -- Primeagan says never to use Q
 vim.keymap.set("n", "Q", "<nop>")
 
+-- NOTE: these should go in tmux conf
 -- open a new split to the right in the same directory
-vim.keymap.set("n", "<leader>cw", ":silent !tmux split-window -dh<CR>", { desc = "[C]reate tmux [W]indow" })
+-- vim.keymap.set("n", "<leader>ch", ":silent !tmux split-window -h<CR>", { desc = "[C]reate [H]orizontal Tmux Split" })
+-- open a new split on top in the same directory
+-- vim.keymap.set("n", "<leader>cv", ":silent !tmux split-window -vb<CR>", { desc = "[C]reate [V]ertical Tmux Split" })
 -- open new vsplit and python interpreter
-vim.keymap.set("n", "<leader>cp", ":vsplit term://python3<cr><C-W>h",
-  { silent = true, desc = "[C]reate [P]ython terminal" })
-vim.keymap.set("n", "<leader>ci", ":vsplit term://ipython<cr><C-w>h",
-  { silent = true, desc = "[C]reate [I]Python terminal" })
+-- vim.keymap.set("n", "<leader>cp", ":vsplit term://python3<cr><C-W>h",
+--   { silent = true, desc = "[C]reate [P]ython terminal" })
+-- vim.keymap.set("n", "<leader>ci", ":vsplit term://ipython<cr><C-w>h",
+--   { silent = true, desc = "[C]reate [I]Python terminal" })
 
 -- quick format page
 vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "[F]ormat" })
@@ -83,21 +88,33 @@ vim.keymap.set("n", "<leader>o", "<cmd>Oil<CR>", { desc = "[O]il" })
 -- buffers
 vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true, desc = "[B]uffer" })
 vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true, desc = "[B]uffer" })
-vim.keymap.set("n", "<C-x>", "<cmd>bd!<CR>", { silent = true })
-vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { silent = true, desc = "E[X]it Buffer" })
--- vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#|bd#<CR>", { silent = true }) -- close all buffers except current one
+vim.keymap.set("n", "<leader>x", "<cmd>x<CR>", { silent = true, desc = "E[X]it Buffer" })
 
 -- tabs
 -- <C-PageUp> and <C-PageDown> also work to change tabs, gt and gT also work
 vim.keymap.set("n", "[t", ":tabprevious<CR>", { silent = true, desc = "[T]ab" })
 vim.keymap.set("n", "]t", ":tabnext<CR>", { silent = true, desc = "[T]ab" })
+vim.keymap.set("n", "<c-w>p", ":tabprevious<CR>", { silent = true, desc = "[T]ab" })
+vim.keymap.set("n", "<c-w>n", ":tabnext<CR>", { silent = true, desc = "[T]ab" })
+vim.keymap.set("n", "<C-w>t", ":tabe<CR>", { silent = true, desc = "[T]ab" })
+vim.keymap.set("n", "<C-w>1", ":tabn1<CR>", { silent = true, desc = "Tab 1" })
+vim.keymap.set("n", "<C-w>2", ":tabn2<CR>", { silent = true, desc = "Tab 2" })
+vim.keymap.set("n", "<C-w>3", ":tabn3<CR>", { silent = true, desc = "Tab 3" })
+vim.keymap.set("n", "<C-w>4", ":tabn4<CR>", { silent = true, desc = "Tab 4" })
+vim.keymap.set("n", "<C-w>5", ":tabn5<CR>", { silent = true, desc = "Tab 5" })
+
+-- terminal
+vim.keymap.set("n", "<C-w>E", ":vs | te<CR>a", { silent = true, desc = "T[E]rminal (right)" })
+vim.keymap.set("n", "<C-w><C-E>", ":vs | te<CR>a", { silent = true, desc = "T[E]rminal (right)" })
+vim.keymap.set("n", "<C-w>e", ":sv | te<CR>a", { silent = true, desc = "T[E]rminal (top)" })
+vim.keymap.set("n", "<C-w><C-e>", ":sv | te<CR>a", { silent = true, desc = "T[E]rminal (top)" })
 
 -- movements
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
 vim.keymap.set("v", "H", "^")
 vim.keymap.set("v", "L", "$")
--- vim.keymap.set("n", "<CR>", "G") -- useful for jumping using line numbers?
+-- vim.keymap.set("n", "<CR>", "Gzz") -- useful for jumping using line numbers?
 
 -- no highlight
 vim.keymap.set("n", "<esc>", ":noh<CR>", { silent = true, desc = "[N]o [H]ighlight" })
@@ -135,8 +152,14 @@ vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { d
 -- rebase action<C-r>, create action <C-a>, switch action <C-s>, delete action <C-d> and merge action <C-y>
 vim.keymap.set('n', '<leader>gS', require('telescope.builtin').git_stash, { desc = "[G]it [S]tash" })
 
-vim.keymap.set("n", "]h", ":Gitsigns next_hunk<CR>", { silent = true, desc = "[H]unk" })
-vim.keymap.set("n", "[h", ":Gitsigns prev_hunk<CR>", { silent = true, desc = "[H]unk" })
+-- other telescope
+vim.keymap.set('n', '<leader>sR', function() require('telescope.builtin').oldfiles({ only_cwd = true }) end,
+  { desc = "[S]earch [R]ecent" })
+
+vim.keymap.set("n", "gh", function() require('gitsigns').nav_hunk('next', { wrap = false }) end,
+  { silent = true, desc = "[H]unk" })
+vim.keymap.set("n", "gH", function() require('gitsigns').nav_hunk('prev', { wrap = false }) end,
+  { silent = true, desc = "[H]unk" })
 
 -- save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true, desc = "[W]rite" })
@@ -156,6 +179,7 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sp', require('telescope.builtin').resume, { silent = true, desc = "[S]earch [P]revious" })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
 vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
+-- vim.keymap.set('n', '<leader>B', require('telescope.builtin').buffers, { desc = '[B]uffers' }) // NOTE: need this map for DAP conditional breakpoint
 vim.keymap.set('n', '<leader>sg', function()
     require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") });
   end,
@@ -165,10 +189,13 @@ vim.keymap.set('n', '<leader>sl', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
+    -- winblend = 1,
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
+
+vim.keymap.set('n', '<leader>sc', ":Telescope live_grep search_dirs={\"~/Vault/cs/cpp/\"}<cr>",
+  { desc = "[C]pp notes", silent = true })
 
 -- LSP
 
@@ -181,6 +208,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
     end
 
+    map('n', '<leader>h', "<cmd>ClangdSwitchSourceHeader<cr>", "Switch Source/[H]eader (C/C++)")
+    map('n', '<leader>H', "<c-w>v<cmd>ClangdSwitchSourceHeader<cr>", "Split Switch Source/[H]eader (C/C++)")
     map('n', '<leader>sd', require('telescope.builtin').diagnostics, "[S]earch [D]iagnostics")
     map('n', '<leader>si', require('telescope.builtin').lsp_implementations, "[S]earch [I]mplementations")
     map('n', '<leader>sv', require('telescope.builtin').lsp_document_symbols, "[S]earch [V]ariables")
@@ -190,7 +219,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --  Useful when you're not sure what type a variable is and you want to see
     --  the definition of its *type*, not where it was *defined*.
     map('n', '<leader>st', require('telescope.builtin').lsp_type_definitions, '[S]earch [T]ype')
-    map("n", "<leader>e", vim.diagnostic.open_float, "Show Diagostic [E]rror Message")
+    map("n", "gl", vim.diagnostic.open_float, "Show Diagostic Error Message")
+    map("n", "gn", vim.diagnostic.goto_next, "[N]ext Diagnostic")
+    map("n", "gp", vim.diagnostic.goto_prev, "[P]revious Diagnostic")
     -- Rename the variable under your cursor
     --  Most Language Servers support renaming across files, etc.
     map('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
@@ -201,14 +232,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --  See `:help K` for why this keymap
 
     map('n', 'gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+    map('n', '<C-w>d', function()
+      vim.cmd('vsplit')
+      require('telescope.builtin').lsp_definitions()
+    end, "Split and Definition")
+
     -- NOTE: This is not Goto Definition, this is Goto Declaration.
     --  For example, in C this would take you to the header
     map('n', 'gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     map('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
     map('n', ']d', vim.diagnostic.goto_next, '[D]iagnostic')
     map('n', '[d', vim.diagnostic.goto_prev, '[D]iagnostic')
+    -- TEST:
+    map('n', '<leader>nd', vim.diagnostic.goto_next, '[D]iagnostic')
+    map('n', '<leader>Nd', vim.diagnostic.goto_prev, '[D]iagnostic')
+    -- NOTE: on mac, can use <C-H> for backspace can get by without mapping backspace?
     map("i", "<C-h>", vim.lsp.buf.signature_help, "Signature [H]elp")
-
 
     -- Highlight references of the word under your cursor when your cursor
     -- rests there for a little while. See `:help CursorHold` for information
@@ -232,29 +271,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.keymap.set("n", "<leader>E", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle Tre[E]" })
 
 -- Harpoon
-vim.keymap.set("n", "<leader>i", function() require("harpoon"):list():append() end, { desc = "Harpoon F[I]le" })
-vim.keymap.set("n", "<C-e>", function() require("harpoon").ui:toggle_quick_menu(require('harpoon'):list()) end)
+vim.keymap.set("n", "<leader>i", function() require("harpoon"):list():add() end, { desc = "Harpoon F[I]le" })
+vim.keymap.set("n", "<leader>e", function() require("harpoon").ui:toggle_quick_menu(require('harpoon'):list()) end,
+  { desc = "Harpoon" })
 vim.keymap.set("n", "<C-j>", function() require("harpoon"):list():select(1) end)
 vim.keymap.set("n", "<C-k>", function() require("harpoon"):list():select(2) end)
 vim.keymap.set("n", "<C-l>", function() require("harpoon"):list():select(3) end)
 vim.keymap.set("n", "<C-h>", function() require("harpoon"):list():select(4) end)
 
 -- Trouble
-vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<cr>",
+vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>",
   { silent = true, noremap = true, desc = "[T]rouble [T]oggle" })
-vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  { silent = true, noremap = true, desc = "[T]rouble [W]orkspace Diagnostics" })
-vim.keymap.set("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>",
-  { silent = true, noremap = true, desc = "[T]rouble [D]ocument Diagnostics" })
-vim.keymap.set("n", "<leader>tl", "<cmd>TroubleToggle loclist<cr>",
-  { silent = true, noremap = true, desc = "[T]rouble [L]oclist" })
-vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>",
-  { silent = true, noremap = true, desc = "[T]rouble [Q]uickfix" })
+-- TODO: how to toggle workspace diagnostics?
 
 vim.keymap.set("n", "<leader>z", ":ZenMode<CR>", { silent = true, desc = "[Z]en mode" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "[U]ndo tree" })
-vim.keymap.set('n', '<leader>qp', require('quarto').quartoPreview,
-  { silent = true, noremap = true, desc = "[Q]uarto [P]review" })
 vim.keymap.set("n", "<leader>a", ":Alpha<CR>", { silent = true, desc = "[A]lpha" })
 
 -- don't type :
@@ -267,6 +298,8 @@ vim.keymap.set('n', '<F10>', function() require('dap').step_over() end, { desc =
 vim.keymap.set('n', '<F11>', function() require('dap').step_into() end, { desc = "Step Into" })
 vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, { desc = "Step Out" })
 vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, { desc = "Toggle [B]reakpoint" })
+vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint Condition: ')) end,
+  { desc = "Toggle [B]reakpoint with Condition" })
 vim.keymap.set('n', '<leader>dr', function() require('dapui').open({ reset = true, silent = true }) end,
   { desc = "[D]apUI [R]eset" })
 vim.keymap.set('n', '<Leader>dt', function() require('dap').terminate() end, { desc = "[D]ap [T]erminate" })
@@ -275,12 +308,31 @@ vim.keymap.set('n', '<Leader>dm',
   { desc = "[D]ap Log Point [M]essage" })
 vim.keymap.set('n', '<Leader>dR', function() require('dap').repl.open() end, { desc = "[D]ap [R]epl Open" })
 vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end, { desc = "[D]ap Run [L]ast" })
---DAPUI
+--DAPUI WIDGETS
 vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function() require('dap.ui.widgets').hover() end,
   { desc = "[D]ap Widget [H]over" })
 vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function() require('dap.ui.widgets').preview() end,
   { desc = "[D]ap Widget [P]review" })
-vim.keymap.set('n', '<Leader>df', function() local widgets = require('dap.ui.widgets') widgets.centered_float(widgets.frames) end, { desc = "[D]ap [W]idget [F]rames" })
-vim.keymap.set('n', '<Leader>ds', function() local widgets = require('dap.ui.widgets') widgets.centered_float(widgets.scopes) end, { desc = "[D]ap [W]idget [S]copes" })
+vim.keymap.set('n', '<Leader>df',
+  function()
+    local widgets = require('dap.ui.widgets')
+    widgets.centered_float(widgets.frames)
+  end, { desc = "[D]ap [W]idget [F]rames" })
+vim.keymap.set('n', '<Leader>ds',
+  function()
+    local widgets = require('dap.ui.widgets')
+    widgets.centered_float(widgets.scopes)
+  end, { desc = "[D]ap [W]idget [S]copes" })
 
-vim.keymap.set('n', '<Leader>mp', ':MarkdownPreview<CR>', {desc = "[M]arkdown [P]review"})
+vim.keymap.set('n', '<Leader>mp', ':MarkdownPreview<CR>', { desc = "[M]arkdown [P]review" })
+
+
+vim.keymap.set('n', '<leader>nm', ']m', { desc = "[N]ext [M]ethod Start" })
+vim.keymap.set('n', '<leader>Nm', '[m', { desc = "Previous [M]ethod Start" })
+vim.keymap.set('n', '<leader>nM', ']M', { desc = "[N]ext [M]ethod End" })
+vim.keymap.set('n', '<leader>NM', '[M', { desc = "Previous [M]ethod End" })
+
+-- DBUI
+vim.keymap.set('n', '<leader>DB', ':DBUIToggle<cr>', { desc = "[D][B]UI Toggle" })
+
+-- vim.keymap.set('n', '<C-W>d', ':vs<cr>gd', { desc = "split and definition", silent = true })

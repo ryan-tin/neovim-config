@@ -12,7 +12,9 @@ lsp.ensure_installed({
   'pyright',       -- python
   'clangd',        -- C and C++
   'bashls',        -- bash
-  'cssls'          -- css
+  'cssls',         -- css
+  'marksman',      -- markdown
+  'cmake',
 })
 
 -- set up lsp config for each language
@@ -36,8 +38,19 @@ lspconfig.pyright.setup({
       }
     }
   }
+})
+
+lspconfig.marksman.setup({})
+
+lspconfig.clangd.setup {
+  init_options = {
+    fallbackFlags = { '--std=c++20' } -- need this to tell clangd what version of cpp
+    -- alternatively, set at the project level using compile_flags.txt or compile_commands.json in the project directory
+  },
+  IndentPPDirectives = "AfterHash"
 }
-)
+
+-- lspconfig.
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
@@ -67,7 +80,7 @@ cmp.setup({
     end,
   },
   completion = { completeopt = 'menu,menuone,noinsert' },
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     -- Enter / <C-y> to confirm completion
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     -- ['<C-j>'] = cmp.mapping.confirm({ select = true }),
@@ -76,7 +89,10 @@ cmp.setup({
     -- move through cmp menu
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    -- Navigate between snippet placeholder
+    -- scroll popup documentation
+    ['<C-f>'] = cmp.mapping.scroll_docs(1),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-1),
+    -- Navigate between snippet placeholder, <C-f>/<C-b> also works
     ['<C-j>'] = cmp.mapping(function()
       if luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
@@ -90,14 +106,50 @@ cmp.setup({
     -- disable completion with tab (helps with copilot setup)
     ['<Tab>'] = vim.NIL,
     ['<S-Tab>'] = vim.NIL
-  },
+  }),
   experimental = {
-    ghost_text = false -- this conflicts with copilot
+    ghost_text = true -- this conflicts with copilot
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "path" },
-    { name = "otter" },
+  }, {
+    { name = 'buffer' }
+  })
+})
+
+-- set up vim-dadbod
+cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+  sources = {
+    { name = "vim-dadbod-completion" }, --
+    { name = "buffer" }                 -- get completion from the currently open buffer
   }
 })
+
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  }),
+  matching = { disallow_symbol_nonprefix_matching = false }
+})
+
+-- cmp.setup.filetype({ "cmake" }, {
+--   sources = {
+--     {
+--       name = "buffer"
+--     }
+--   }
+-- })

@@ -58,6 +58,7 @@ local plugins = {
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-cmdline' },
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
       { 'saadparwaiz1/cmp_luasnip' },
@@ -81,16 +82,20 @@ local plugins = {
     },
   },
   -- skill issue? Learn to type
-  -- 'windwp/nvim-autopairs',
-  { "kylechui/nvim-surround", version = "*",        opts = {} },
-  -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true,
+    opts = {},
+  },
+  { "kylechui/nvim-surround", version = "*", opts = {} },
   {
     "chrishrb/gx.nvim",
     event = { "BufEnter" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       handler_options = {
-        search_engine = "duckduckgo",
+        search_engine = "google",
       }
     },
   },
@@ -136,15 +141,24 @@ local plugins = {
         "mtime",
       },
       delete_to_trash = true,
+      view_options = {
+        -- Show files and directories that start with "."
+        show_hidden = true,
+        -- This function defines what is considered a "hidden" file
+        is_hidden_file = function(name, bufnr)
+          return vim.startswith(name, ".")
+        end,
+      },
     }
   },
-  { "folke/zen-mode.nvim",       opts = {} },
+  {
+    "folke/zen-mode.nvim", opts = {} },
   { 'nvim-lualine/lualine.nvim', },
-
   -- COLORSCHEMES
   {
     'rebelot/kanagawa.nvim',
     opts = {
+      transparent = false,
       overrides = function(colors)
         local theme = colors.theme
         return {
@@ -162,13 +176,13 @@ local plugins = {
           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
           -- Borderless, block like modern Telescope UI
-          -- TelescopeTitle = { fg = theme.ui.special, bold = true },
-          -- TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-          -- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-          -- TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-          -- TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-          -- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-          -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+          TelescopeTitle = { fg = theme.ui.special, bold = true },
+          TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+          TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+          TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+          TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+          TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+          TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 
           -- Dark completion (popup menu)
           Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
@@ -188,62 +202,18 @@ local plugins = {
       }
     },
     init = function()
+      -- vim.cmd.colorscheme('kanagawa-dragon')
       vim.cmd.colorscheme('kanagawa-wave')
     end
   },
-  -- { "folke/tokyonight.nvim", },
-  -- {
-  --   "sainnhe/gruvbox-material",
-  --   lazy = false,
-  --   priority = 1000,
-  --   init = function()
-  --     vim.g.background = 'dark'
-  --     vim.g.gruvbox_material_background = 'hard'
-  --     vim.g.gruvbox_material_better_performance = 1
-  --     vim.g.gruvbox_material_transparent_background = 2
-  --     vim.cmd.colorscheme('gruvbox-material')
-  --   end
-  -- },
-  -- {
-  --   "sainnhe/everforest",
-  --   lazy = false,
-  --   priority = 1000,
-  --   init = function()
-  --     vim.g.background = 'dark'
-  --     vim.g.everforest_background = 'hard'
-  --     vim.g.everforest_better_performance = 1
-  --     vim.cmd.colorscheme('everforest') -- this must be last
-  --   end
-  -- },
   -- "github/copilot.vim", -- trial expired
-  { 'jpalardy/vim-slime' },
-  {
-    "folke/todo-comments.nvim",
-    event = "VimEnter",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = { signs = false }
-  },
-  {
-    "quarto-dev/quarto-nvim",
-    dev = false,
-    dependencies = {
-      {
-        "jmbuhr/otter.nvim", -- allows code completion and other lsp features inside embedded code
-        dev = false,
-        dependencies = {
-          { "neovim/nvim-lspconfig" },
-        },
-        opts = {
-          buffers = {
-            -- if set to true, the filetype of the otterbuffers will be set.
-            -- otherwise only the autocommand of lspconfig that attaches
-            -- the language server will be executed without setting the filetype
-            set_filetype = true,
-          },
-        },
-      },
-    },
-  },
+  -- { 'jpalardy/vim-slime' },
+  -- {
+  --   "folke/todo-comments.nvim",
+  --   event = "VimEnter",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   opts = { signs = false }
+  -- },
   {
     "nanozuki/tabby.nvim",
     config = function()
@@ -258,6 +228,27 @@ local plugins = {
       'nvim-lua/plenary.nvim'
     }
   },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+  },
+  -- SQL
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod',                     lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  }
 }
 
 local opts = {}
