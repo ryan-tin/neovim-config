@@ -66,7 +66,7 @@ local plugins = {
     }
   },
   { 'nvim-treesitter/nvim-treesitter', },
-  { 'nvim-treesitter/playground', },
+  { 'nvim-treesitter/playground', }, -- NOTE: deprecated and built into neovim?
   { 'nvim-treesitter/nvim-treesitter-context', },
   { 'nvim-tree/nvim-web-devicons', },
   {
@@ -123,8 +123,14 @@ local plugins = {
       library = { plugins = { "nvim-dap-ui" }, types = true },
     }
   },
-  { 'folke/trouble.nvim',   opts = { signs = {} } },
-  { 'folke/which-key.nvim', },
+  { 'folke/trouble.nvim',        opts = { signs = {} } },
+  {
+    'folke/which-key.nvim',
+    dependencies = {
+      "echasnovski/mini.icons",
+      "nvim-tree/nvim-web-devicons",
+    }
+  },
   {
     'numToStr/Comment.nvim',
     opts = {
@@ -152,85 +158,53 @@ local plugins = {
     }
   },
   {
-    "folke/zen-mode.nvim", opts = {} },
-  { 'nvim-lualine/lualine.nvim', },
-  -- COLORSCHEMES
-  {
-    'rebelot/kanagawa.nvim',
+    "folke/zen-mode.nvim",
     opts = {
-      transparent = false,
-      overrides = function(colors)
-        local theme = colors.theme
-        return {
-          -- Transparent floating windows
-          NormalFloat = { bg = "none" },
-          FloatBorder = { bg = "none" },
-          FloatTitle = { bg = "none" },
-          -- Save an hlgroup with dark background and dimmed foreground
-          -- so that you can use it where your still want darker windows.
-          -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-          NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-          -- Popular plugins that open floats will link to NormalFloat by default;
-          -- set their background accordingly if you wish to keep them dark and borderless
-          LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-          MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-
-          -- Borderless, block like modern Telescope UI
-          TelescopeTitle = { fg = theme.ui.special, bold = true },
-          TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-          TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-          TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-          TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-          TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-          TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-
-          -- Dark completion (popup menu)
-          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
-          PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-          PmenuSbar = { bg = theme.ui.bg_m1 },
-          PmenuThumb = { bg = theme.ui.bg_p2 },
-        }
-      end,
-      colors = {
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none" -- Remove the background of LineNr, {Sign,Fold}Column and friends
-            }
-          }
-        }
-      }
-    },
-    init = function()
-      -- vim.cmd.colorscheme('kanagawa-dragon')
-      vim.cmd.colorscheme('kanagawa-wave')
-    end
+      window = {
+        width = 160,
+      },
+    }
   },
+  { 'nvim-lualine/lualine.nvim', },
   -- "github/copilot.vim", -- trial expired
   -- { 'jpalardy/vim-slime' },
-  -- {
-  --   "folke/todo-comments.nvim",
-  --   event = "VimEnter",
-  --   dependencies = { "nvim-lua/plenary.nvim" },
-  --   opts = { signs = false }
-  -- },
+  {
+    "folke/todo-comments.nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = { signs = false }
+  },
   {
     "nanozuki/tabby.nvim",
     config = function()
       require("tabby.tabline").use_preset("tab_only")
     end,
   },
-  { "nvim-tree/nvim-tree.lua" },
-  {
-    "goolord/alpha-nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      'nvim-lua/plenary.nvim'
-    }
-  },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   event = "VeryLazy"
+  -- },
+  -- {
+  --   "goolord/alpha-nvim",
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons",
+  --     'nvim-lua/plenary.nvim'
+  --   }
+  -- },
   {
     "OXY2DEV/markview.nvim",
-    lazy = false, -- Recommended
+    lazy = false,                      -- Recommended
+    opts = {
+      modes = { "n", "no", "c", "i" }, -- Change these modes to what you need
+      hybrid_modes = { "n", "i" },     -- Uses this feature on normal mode
+      -- This is nice to have
+      callbacks = {
+        on_enable = function(_, win)
+          vim.wo[win].conceallevel = 2;
+          vim.wo[win].concealcursor = "c";
+        end
+      }
+    }
   },
   -- SQL
   {
@@ -248,7 +222,47 @@ local plugins = {
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
     end,
-  }
+  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   main = "ibl",
+  --   opts = {
+  --     scope = {
+  --       enabled = false
+  --     },
+  --     exclude = {
+  --       filetypes = { "markdown" }
+  --     }
+  --   },
+  -- },
+  -- COLORSCHEMES
+  { 'rebelot/kanagawa.nvim', },
+  {
+    "EdenEast/nightfox.nvim",
+    opts = {} -- setup must be called before loading
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  -- {
+  --   "robitx/gp.nvim",
+  --   config = function()
+  --     local conf = {
+  --       -- For customization, refer to Install > Configuration in the Documentation/Readme
+  --     }
+  --     require("gp").setup(conf)
+  --
+  --     -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+  --   end,
+  -- },
+  -- NOTE: cannot get this to work with termguicolors... its set...
+  -- {
+  --   "norcalli/nvim-colorizer.lua",
+  --   opts = {}
+  -- }
 }
 
 local opts = {}

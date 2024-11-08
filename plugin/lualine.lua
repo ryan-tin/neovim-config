@@ -73,6 +73,12 @@ local progress = {
 --   return chars[index]
 -- end
 
+local function isRecording ()
+  local reg = vim.fn.reg_recording()
+  if reg == "" then return "" end -- not recording
+  return "recording @" .. reg
+end
+
 local function selectionCount()
 	local isVisualMode = vim.fn.mode():find("[Vv]")
 	if not isVisualMode then return "" end
@@ -87,15 +93,15 @@ lualine.setup({
     icons_enabled = true,
     theme = "auto",
     component_separators = { left = '', right = '' },
-    section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = { "dashboard", "Outline", "NvimTree" },
     always_divide_middle = true,
   },
   sections = {
     lualine_a = { mode },
     lualine_b = { branch },
-    lualine_c = { diff, filename },
-    lualine_x = { 'searchcount', diagnostics },
+    lualine_c = { filename },
+    lualine_x = { isRecording, 'searchcount', diff, diagnostics },
     lualine_y = { filetype },
     lualine_z = { location, progress },
   },

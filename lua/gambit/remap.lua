@@ -51,8 +51,8 @@ vim.keymap.set("i", "KJ", "<Esc>")
 vim.keymap.set("i", "Kj", "<Esc>")
 
 -- <C-f> and <C-b> to move around in normal mode
--- vim.keymap.set('i', '<C-f>', '<C-o>l')
--- vim.keymap.set('i', '<C-b>', '<C-o>h')
+vim.keymap.set('i', '<C-f>', '<Right>')
+vim.keymap.set('i', '<C-b>', '<Left>')
 
 -- what does this do?
 -- Primeagan says never to use Q
@@ -68,9 +68,6 @@ vim.keymap.set("n", "Q", "<nop>")
 --   { silent = true, desc = "[C]reate [P]ython terminal" })
 -- vim.keymap.set("n", "<leader>ci", ":vsplit term://ipython<cr><C-w>h",
 --   { silent = true, desc = "[C]reate [I]Python terminal" })
-
--- quick format page
-vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "[F]ormat" })
 
 -- quick fix navigation
 vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
@@ -89,6 +86,7 @@ vim.keymap.set("n", "<leader>o", "<cmd>Oil<CR>", { desc = "[O]il" })
 vim.keymap.set("n", "[b", ":bprev<CR>", { silent = true, desc = "[B]uffer" })
 vim.keymap.set("n", "]b", ":bnext<CR>", { silent = true, desc = "[B]uffer" })
 vim.keymap.set("n", "<leader>x", "<cmd>x<CR>", { silent = true, desc = "E[X]it Buffer" })
+vim.keymap.set("n", "<leader>X", ":windo bd<CR>", { silent = true, desc = "E[X]it Tab" }) -- delete all buffers in this tab
 
 -- tabs
 -- <C-PageUp> and <C-PageDown> also work to change tabs, gt and gT also work
@@ -120,7 +118,7 @@ vim.keymap.set("v", "L", "$")
 vim.keymap.set("n", "<esc>", ":noh<CR>", { silent = true, desc = "[N]o [H]ighlight" })
 
 -- Git remaps
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "[G]it [S]tatus" });
+vim.keymap.set("n", "<leader>gs", ":vertical rightbelow Git<CR>", { desc = "[G]it [S]tatus" });
 -- This is useful for handling merge conflicts
 -- then use <leader>gH or <leader>gL to get that side's diff
 vim.keymap.set("n", "<leader>gD", ":Gvdiffsplit!<CR>", { silent = true, desc = "3-way [G]it [D]iffsplit" })
@@ -137,24 +135,24 @@ vim.keymap.set("n", "<leader>gth", ":Gitsigns preview_hunk_inline<CR>", { silent
 
 -- Git Toggles
 vim.keymap.set("n", "<leader>gtb", ":Gitsigns toggle_current_line_blame<CR>",
-  { silent = true, desc = "[G]it [T]oggle [B]lame" })
+  { silent = true, desc = "[B]lame" })
 vim.keymap.set("n", "<leader>gtw", ":Gitsigns toggle_word_diff<CR>",
-  { silent = true, desc = "[G]it [T]oggle [W]ord Diff" })
-vim.keymap.set("n", "<leader>gtd", ":Gitsigns toggle_deleted<CR>", { silent = true, desc = "[G]it [T]oggle [D]eleted" })
+  { silent = true, desc = "[W]ord Diff" })
+vim.keymap.set("n", "<leader>gtd", ":Gitsigns toggle_deleted<CR>", { silent = true, desc = "[D]eleted" })
 
 -- Git Telescopes Searches
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = "[G]it [F]iles" })
-vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = "[G]it [C]ommits" })
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = "[F]iles" })
+vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = "[C]ommits" })
 -- checkout action with <CR>, reset mixed <C-r>m, reset soft <C-r>s, and reset hard <C-r>h
-vim.keymap.set('n', '<leader>gF', require('telescope.builtin').git_bcommits, { desc = "[G]it [F]ile Commits" })
-vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = "[G]it [B]ranches" })
+vim.keymap.set('n', '<leader>gF', require('telescope.builtin').git_bcommits, { desc = "[F]ile Commits" })
+vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = "[B]ranches" })
 -- Lists all branches with log preview, checkout action <cr>, track action <C-t>,
 -- rebase action<C-r>, create action <C-a>, switch action <C-s>, delete action <C-d> and merge action <C-y>
-vim.keymap.set('n', '<leader>gS', require('telescope.builtin').git_stash, { desc = "[G]it [S]tash" })
+vim.keymap.set('n', '<leader>gS', require('telescope.builtin').git_stash, { desc = "[S]tash" })
 
 -- other telescope
-vim.keymap.set('n', '<leader>sR', function() require('telescope.builtin').oldfiles({ only_cwd = true }) end,
-  { desc = "[S]earch [R]ecent" })
+vim.keymap.set('n', '<leader>sf', function() require('telescope.builtin').oldfiles({ only_cwd = true }) end,
+  { desc = "Old [F]iles" })
 
 vim.keymap.set("n", "gh", function() require('gitsigns').nav_hunk('next', { wrap = false }) end,
   { silent = true, desc = "[H]unk" })
@@ -163,6 +161,7 @@ vim.keymap.set("n", "gH", function() require('gitsigns').nav_hunk('prev', { wrap
 
 -- save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true, desc = "[W]rite" })
+vim.keymap.set("i", "kw", ":w<CR>", { silent = true, desc = "[W]rite" })
 
 -- resize window using shift and arrow keys
 vim.keymap.set("n", "<S-Up>", "<cmd>resize +2<CR>")
@@ -173,25 +172,25 @@ vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 vim.keymap.set({ "n", "x" }, "gx", "<cmd>Browse<cr>", { silent = true, desc = "open with gx" })
 
 -- General Telescope
-vim.keymap.set('n', '<C-f>', require('telescope.builtin').find_files, {})
-vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = "[S]earch [B]uffers" })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = "[S]earch [H]elp" })
-vim.keymap.set('n', '<leader>sp', require('telescope.builtin').resume, { silent = true, desc = "[S]earch [P]revious" })
-vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
--- vim.keymap.set('n', '<leader>B', require('telescope.builtin').buffers, { desc = '[B]uffers' }) // NOTE: need this map for DAP conditional breakpoint
+vim.keymap.set('n', '<C-f>', function() require('telescope.builtin').find_files({hidden=true}) end, {})
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = "[B]uffers" })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = "[H]elp" })
+vim.keymap.set('n', '<leader>sp', require('telescope.builtin').resume, { silent = true, desc = "[P]revious" })
+vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]elect Telescope' })
+vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[K]eymaps' })
 vim.keymap.set('n', '<leader>sg', function()
     require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") });
   end,
-  { desc = "[S]earch Static [G]rep)" })
-vim.keymap.set('n', '<leader>sl', require('telescope.builtin').live_grep, { desc = "[S]earch [L]ive Grep" })
+  { desc = "Static [G]rep)" })
+vim.keymap.set('n', '<leader>sl', require('telescope.builtin').live_grep, { desc = "[L]ive Grep" })
 
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    -- winblend = 1,
-    previewer = false,
-  })
+  -- require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+  --   -- winblend = 1,
+  --   previewer = true,
+  -- }) -- dropdown picker
+  require('telescope.builtin').current_buffer_fuzzy_find({}) -- the default picker
 end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<leader>sc', ":Telescope live_grep search_dirs={\"~/Vault/cs/cpp/\"}<cr>",
@@ -209,16 +208,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     map('n', '<leader>h', "<cmd>ClangdSwitchSourceHeader<cr>", "Switch Source/[H]eader (C/C++)")
-    map('n', '<leader>H', "<c-w>v<cmd>ClangdSwitchSourceHeader<cr>", "Split Switch Source/[H]eader (C/C++)")
-    map('n', '<leader>sd', require('telescope.builtin').diagnostics, "[S]earch [D]iagnostics")
-    map('n', '<leader>si', require('telescope.builtin').lsp_implementations, "[S]earch [I]mplementations")
-    map('n', '<leader>sv', require('telescope.builtin').lsp_document_symbols, "[S]earch [V]ariables")
-    map('n', '<leader>sV', require('telescope.builtin').lsp_dynamic_workspace_symbols, "[S]earch Workspace [V]ariables")
-    map('n', '<leader>sr', require('telescope.builtin').lsp_references, "[S]earch [R]eferences")
+    map('n', '<C-w><C-h>', "<c-w>v<cmd>ClangdSwitchSourceHeader<cr>", "Split Switch Source/[H]eader (C/C++)")
+    map('n', '<leader>sd', require('telescope.builtin').diagnostics, "[D]iagnostics")
+    map('n', '<leader>si', require('telescope.builtin').lsp_implementations, "[I]mplementations")
+    map('n', '<leader>sv', require('telescope.builtin').lsp_document_symbols, "[V]ariables")
+    map('n', '<leader>sV', require('telescope.builtin').lsp_dynamic_workspace_symbols, "Workspace [V]ariables")
+    map('n', '<leader>sr', require('telescope.builtin').lsp_references, "[R]eferences")
     -- Jump to the type of the word under your cursor.
     --  Useful when you're not sure what type a variable is and you want to see
     --  the definition of its *type*, not where it was *defined*.
-    map('n', '<leader>st', require('telescope.builtin').lsp_type_definitions, '[S]earch [T]ype')
+    map('n', '<leader>st', require('telescope.builtin').lsp_type_definitions, '[T]ype')
     map("n", "gl", vim.diagnostic.open_float, "Show Diagostic Error Message")
     map("n", "gn", vim.diagnostic.goto_next, "[N]ext Diagnostic")
     map("n", "gp", vim.diagnostic.goto_prev, "[P]revious Diagnostic")
@@ -230,6 +229,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     -- Opens a popup that displays documentation about the word under your cursor
     --  See `:help K` for why this keymap
+
+    -- format entire doc when in normal mode, or only format selection
+    map({ "n", "v" }, "<leader>f", vim.lsp.buf.format, "[F]ormat")
 
     map('n', 'gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
     map('n', '<C-w>d', function()
@@ -286,7 +288,7 @@ vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>",
 
 vim.keymap.set("n", "<leader>z", ":ZenMode<CR>", { silent = true, desc = "[Z]en mode" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "[U]ndo tree" })
-vim.keymap.set("n", "<leader>a", ":Alpha<CR>", { silent = true, desc = "[A]lpha" })
+-- vim.keymap.set("n", "<leader>a", ":Alpha<CR>", { silent = true, desc = "[A]lpha" })
 
 -- don't type :
 -- FIX: conflicts with repeat last f jump
@@ -297,9 +299,9 @@ vim.keymap.set('n', '<F5>', function() require('dap').continue() end, { desc = "
 vim.keymap.set('n', '<F10>', function() require('dap').step_over() end, { desc = "Step Over" })
 vim.keymap.set('n', '<F11>', function() require('dap').step_into() end, { desc = "Step Into" })
 vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, { desc = "Step Out" })
-vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, { desc = "Toggle [B]reakpoint" })
+vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, { desc = "[B]reakpoint Add" })
 vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint Condition: ')) end,
-  { desc = "Toggle [B]reakpoint with Condition" })
+  { desc = "[C]onditional Breakpoint" })
 vim.keymap.set('n', '<leader>dr', function() require('dapui').open({ reset = true, silent = true }) end,
   { desc = "[D]apUI [R]eset" })
 vim.keymap.set('n', '<Leader>dt', function() require('dap').terminate() end, { desc = "[D]ap [T]erminate" })
@@ -324,8 +326,6 @@ vim.keymap.set('n', '<Leader>ds',
     widgets.centered_float(widgets.scopes)
   end, { desc = "[D]ap [W]idget [S]copes" })
 
-vim.keymap.set('n', '<Leader>mp', ':MarkdownPreview<CR>', { desc = "[M]arkdown [P]review" })
-
 
 vim.keymap.set('n', '<leader>nm', ']m', { desc = "[N]ext [M]ethod Start" })
 vim.keymap.set('n', '<leader>Nm', '[m', { desc = "Previous [M]ethod Start" })
@@ -333,6 +333,50 @@ vim.keymap.set('n', '<leader>nM', ']M', { desc = "[N]ext [M]ethod End" })
 vim.keymap.set('n', '<leader>NM', '[M', { desc = "Previous [M]ethod End" })
 
 -- DBUI
-vim.keymap.set('n', '<leader>DB', ':DBUIToggle<cr>', { desc = "[D][B]UI Toggle" })
+vim.keymap.set('n', '<leader>db', ':DBUIToggle<cr>', { desc = "[D][B]UI Toggle" })
 
 -- vim.keymap.set('n', '<C-W>d', ':vs<cr>gd', { desc = "split and definition", silent = true })
+
+-- QOL command mode
+-- vim.keymap.set('n', ';', ':')          -- don't type : so often
+-- this conflicts with jumping to next f or t
+vim.keymap.set({'n', 'v'}, '<leader>;', 'q:') -- open search list
+
+
+-- % for the relative path
+-- %:p for the full path
+-- %:t just filename
+-- yank file name into unamed register which can be pasted with p
+-- TODO: output message that path has been copied
+vim.keymap.set('n', 'yf', ':let @" = expand("%")<CR>', { desc = "relative path" })
+vim.keymap.set('n', 'yF', ':let @" = expand("%:p")<CR>', { desc = "full path" })
+-- yank path to clipboard
+vim.keymap.set('n', '<leader>yf', ':let @+ = expand("%")<CR>', { desc = "relative path clipboard" })
+vim.keymap.set('n', '<leader>yF', ':let @+ = expand("%:p")<CR>', { desc = "full path clipboard" })
+
+-- swap between kanagawa dragon and wave using the vim.o.background = dark|light option
+local function swapcolorscheme()
+  local set_dark_mode = function()
+    vim.api.nvim_set_option("background", "dark")
+  end
+  local set_light_mode = function()
+    vim.api.nvim_set_option("background", "light")
+  end
+  if vim.o.background == 'dark' then
+    set_light_mode()
+  else
+    set_dark_mode()
+  end
+end
+
+vim.keymap.set('n', '<leader>cc', require('telescope.builtin').colorscheme, { desc = "[C]olorscheme" })
+
+-- surround utility (q for ")
+vim.keymap.set('n', 'ciq', 'ci"');
+vim.keymap.set('n', 'caq', 'ca"');
+vim.keymap.set('n', 'yiq', 'yi"');
+vim.keymap.set('n', 'yaq', 'ya"');
+vim.keymap.set('n', 'viq', 'vi"');
+vim.keymap.set('n', 'vaq', 'va"');
+vim.keymap.set('n', 'daq', 'da"');
+vim.keymap.set('n', 'diq', 'di"');

@@ -21,11 +21,13 @@ dap.adapters.codelldb = {
 
 dap.configurations.cpp = {
   {
-    name = "Codelldb: Launch file",
+    name = "Default launch",
     type = "codelldb",
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/main', 'file')
+      -- local current = "build/tests/DbIteratorTest"
+      -- return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/' .. current, 'file')
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
@@ -34,5 +36,12 @@ dap.configurations.cpp = {
     }
   },
 }
+
+require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'c', 'cpp', 'objcpp' } })
+
+-- one of these worked, idk which one!
+dap.set_exception_breakpoints({}) -- don't stop on any exceptions
+require('dap').defaults.fallback.exception_breakpoints = {}
+require('dap').defaults.cpp.exception_breakpoints = {}
 
 dap.configurations.objcpp = dap.configurations.cpp

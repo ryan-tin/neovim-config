@@ -41,3 +41,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- turn wrapping on for Markdown files.
+-- NOTE: fucks with markview rendering
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "markdown",
+--   callback = function()
+--     vim.opt_local.wrap = true
+--   end,
+-- })
+
+-- FIXME: creating new tmux window from inside neovim breaks this
+-- capitulate and only use block
+--
+-- revert cursor after leaving nvim
+-- vim.api.nvim_create_autocmd({"ExitPre", "FocusLost"}, {
+--   group = vim.api.nvim_create_augroup("Exit", { clear = true }),
+--   command = "set guicursor=a:ver90",
+--   desc = "Set cursor back to beam when leaving Neovim."
+-- })

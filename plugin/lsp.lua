@@ -4,7 +4,7 @@ local cmp = require('cmp')
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',      -- typescript
+  'ts_ls',         -- typescript
   'eslint',        -- javascript
   'lua_ls',        -- lua
   'rust_analyzer', -- rust
@@ -15,6 +15,7 @@ lsp.ensure_installed({
   'cssls',         -- css
   'marksman',      -- markdown
   'cmake',
+  -- 'sqlls', -- this sucks.
 })
 
 -- set up lsp config for each language
@@ -42,15 +43,43 @@ lspconfig.pyright.setup({
 
 lspconfig.marksman.setup({})
 
-lspconfig.clangd.setup {
-  init_options = {
-    fallbackFlags = { '--std=c++20' } -- need this to tell clangd what version of cpp
-    -- alternatively, set at the project level using compile_flags.txt or compile_commands.json in the project directory
-  },
-  IndentPPDirectives = "AfterHash"
-}
 
--- lspconfig.
+-- TEST: autocmd to only trigger this setup for c++ files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*.cxx, *.cpp, *.h, *hpp",
+  callback = function()
+    lspconfig.clangd.setup {
+      init_options = {
+        fallbackFlags = { '--std=c++20' } -- need this to tell clangd what version of cpp
+        -- alternatively, set at the project level using compile_flags.txt or compile_commands.json in the project directory
+      },
+      IndentPPDirectives = "AfterHash"
+    }
+  end,
+})
+
+-- ... with a bare setup for c files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*.c",
+  callback = function()
+    lspconfig.clangd.setup {
+      IndentPPDirectives = "AfterHash"
+    }
+  end,
+})
+
+
+lspconfig.cmake.setup({})
+lspconfig.jsonls.setup({})
+-- lspconfig.sqlls.setup({
+--   -- capabilities = capabilities,
+--   filetypes = { 'sql' },
+--   root_dir = function(_)
+--     return vim.loop.cwd()
+--   end,
+-- })
+
+lspconfig.bashls.setup({}) -- TEST:
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
@@ -70,13 +99,12 @@ vim.diagnostic.config({
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-local luasnip = require('luasnip')
-luasnip.config.setup()
+local ls = require("luasnip")
 
 cmp.setup({
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      ls.lsp_expand(args.body)
     end,
   },
   completion = { completeopt = 'menu,menuone,noinsert' },
@@ -86,6 +114,7 @@ cmp.setup({
     -- ['<C-j>'] = cmp.mapping.confirm({ select = true }),
     -- Ctrl+Space to trigger completion menu
     ['<C-e>'] = cmp.mapping.complete(),
+    ['<C-x>'] = cmp.mapping.close(),
     -- move through cmp menu
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -94,21 +123,21 @@ cmp.setup({
     ['<C-b>'] = cmp.mapping.scroll_docs(-1),
     -- Navigate between snippet placeholder, <C-f>/<C-b> also works
     ['<C-j>'] = cmp.mapping(function()
-      if luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
+      if ls.expand_or_locally_jumpable() then
+        ls.expand_or_jump()
       end
     end, { 'i', 's' }),
     ['<C-k>'] = cmp.mapping(function()
-      if luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
+      if ls.locally_jumpable(-1) then
+        ls.jump(-1)
       end
     end, { 'i', 's' }),
     -- disable completion with tab (helps with copilot setup)
-    ['<Tab>'] = vim.NIL,
-    ['<S-Tab>'] = vim.NIL
+    -- ['<Tab>'] = vim.NIL,
+    -- ['<S-Tab>'] = vim.NIL
   }),
   experimental = {
-    ghost_text = true -- this conflicts with copilot
+    -- ghost_text = true -- this conflicts with copilot
   },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
@@ -122,6 +151,7 @@ cmp.setup({
 -- set up vim-dadbod
 cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
   sources = {
+    { name = "luasnip" },
     { name = "vim-dadbod-completion" }, --
     { name = "buffer" }                 -- get completion from the currently open buffer
   }

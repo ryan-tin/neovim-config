@@ -9,9 +9,9 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 1 -- gutter width. small gutters
 -- 80 width column to remind not have too much on one line, use "" to remove line
-vim.opt.colorcolumn = "85"
+vim.opt.colorcolumn = "80"
 
--- 2 space indents
+-- n space indents
 local shiftwidth = 2
 vim.opt.tabstop = shiftwidth
 vim.opt.softtabstop = shiftwidth
@@ -100,3 +100,6 @@ vim.g.have_nerd_font = true
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 -- vim.opt.clipboard = 'unnamedplus'
+
+vim.o.timeout = true
+vim.o.timeoutlen = 500 -- in milliseconds, default 1000
