@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     lspconfig.clangd.setup {
       init_options = {
-        fallbackFlags = { '--std=c++20' } -- need this to tell clangd what version of cpp
+        fallbackFlags = { '--std=c++23' } -- need this to tell clangd what version of cpp
         -- alternatively, set at the project level using compile_flags.txt or compile_commands.json in the project directory
       },
       IndentPPDirectives = "AfterHash"

@@ -1,4 +1,7 @@
 return {
+  s({ trig = "guards", desc = "include guards" }, {
+    t("#ifndef "), i(1), t({"", "#define "}), i(0), t({"", "", "#endif"})
+  }),
   s({ trig = "mu", desc = "make unique" }, {
     t("std::make_unique<"), i(1), t(">("), i(2), t(")"), i(0)
   }),
