@@ -172,7 +172,7 @@ vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 vim.keymap.set({ "n", "x" }, "gx", "<cmd>Browse<cr>", { silent = true, desc = "open with gx" })
 
 -- General Telescope
-vim.keymap.set('n', '<C-f>', function() require('telescope.builtin').find_files({hidden=true}) end, {})
+vim.keymap.set('n', '<C-f>', function() require('telescope.builtin').find_files({ hidden = true }) end, {})
 vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = "[B]uffers" })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = "[H]elp" })
 vim.keymap.set('n', '<leader>sp', require('telescope.builtin').resume, { silent = true, desc = "[P]revious" })
@@ -211,7 +211,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<C-w><C-h>', "<c-w>v<cmd>ClangdSwitchSourceHeader<cr>", "Split Switch Source/[H]eader (C/C++)")
     map('n', '<leader>sd', require('telescope.builtin').diagnostics, "[D]iagnostics")
     map('n', '<leader>si', require('telescope.builtin').lsp_implementations, "[I]mplementations")
-    map('n', '<leader>sv', require('telescope.builtin').lsp_document_symbols, "[V]ariables")
+
+    map('n', '<leader>sv', function()
+        require('telescope.builtin').lsp_document_symbols({ symbol_witdh=100, show_line=true })
+      end , "[V]ariables")
+
     map('n', '<leader>sV', require('telescope.builtin').lsp_dynamic_workspace_symbols, "Workspace [V]ariables")
     map('n', '<leader>sr', require('telescope.builtin').lsp_references, "[R]eferences")
     -- Jump to the type of the word under your cursor.
@@ -340,7 +344,7 @@ vim.keymap.set('n', '<leader>db', ':DBUIToggle<cr>', { desc = "[D][B]UI Toggle" 
 -- QOL command mode
 -- vim.keymap.set('n', ';', ':')          -- don't type : so often
 -- this conflicts with jumping to next f or t
-vim.keymap.set({'n', 'v'}, '<leader>;', 'q:') -- open search list
+vim.keymap.set({ 'n', 'v' }, '<leader>;', 'q:') -- open search list
 
 
 -- % for the relative path
@@ -380,3 +384,7 @@ vim.keymap.set('n', 'viq', 'vi"');
 vim.keymap.set('n', 'vaq', 'va"');
 vim.keymap.set('n', 'daq', 'da"');
 vim.keymap.set('n', 'diq', 'di"');
+
+-- sessions
+vim.keymap.set('n', '<leader>SS', ':mksession!<CR>', { desc = "[S]ave" }) -- ! to overwrite file if exists, file ommitted, "Session.vim" is used
+vim.keymap.set('n', '<leader>SL', ':source Session.vim<CR>', { desc = "[L]oad Session" })

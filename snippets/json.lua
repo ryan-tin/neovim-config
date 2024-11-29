@@ -9,6 +9,7 @@ return {
       "      \"request\": \"launch\",",
       "      \"name\": \"SET_NAME_HERE\",",
       "      \"program\": \"path_to_executable\",",
+      "      \"args\" : [\"--gtest_filter=LoggerTest.DifferentSignature\"],",
       "      \"stopAtEntry\": false,",
       "      \"setupCommands\": [",
       "        {",

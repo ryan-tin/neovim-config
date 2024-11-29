@@ -25,6 +25,7 @@ wk.add({
   { "<leader>p",  group = "[P]aste" },
   { "<leader>r",  group = "[R]ename" },
   { "<leader>s",  group = "[S]earch" },
+  { "<leader>S",  group = "[S]ession" },
   { "<leader>t",  group = "[T]rouble" },
   { "<leader>n",  group = "[N]ext" },
   { "<leader>N",  group = "Previous" },
