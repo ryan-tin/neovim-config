@@ -1,3 +1,6 @@
+-- wrap remap inside function and use this to center line
+-- vim.api.nvim_feedkeys("zz", "n", false)
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -94,12 +97,16 @@ vim.keymap.set("n", "[t", ":tabprevious<CR>", { silent = true, desc = "[T]ab" })
 vim.keymap.set("n", "]t", ":tabnext<CR>", { silent = true, desc = "[T]ab" })
 vim.keymap.set("n", "<c-w>p", ":tabprevious<CR>", { silent = true, desc = "[T]ab" })
 vim.keymap.set("n", "<c-w>n", ":tabnext<CR>", { silent = true, desc = "[T]ab" })
-vim.keymap.set("n", "<C-w>t", ":tabe<CR>", { silent = true, desc = "[T]ab" })
+vim.keymap.set("n", "<C-w>t", ":tabe<CR>", { silent = true, desc = "new [T]ab" }) -- open a new tap
 vim.keymap.set("n", "<C-w>1", ":tabn1<CR>", { silent = true, desc = "Tab 1" })
 vim.keymap.set("n", "<C-w>2", ":tabn2<CR>", { silent = true, desc = "Tab 2" })
 vim.keymap.set("n", "<C-w>3", ":tabn3<CR>", { silent = true, desc = "Tab 3" })
 vim.keymap.set("n", "<C-w>4", ":tabn4<CR>", { silent = true, desc = "Tab 4" })
 vim.keymap.set("n", "<C-w>5", ":tabn5<CR>", { silent = true, desc = "Tab 5" })
+vim.keymap.set("n", "<C-w>6", ":tabn6<CR>", { silent = true, desc = "Tab 6" })
+vim.keymap.set("n", "<C-w>7", ":tabn7<CR>", { silent = true, desc = "Tab 7" })
+vim.keymap.set("n", "<C-w>8", ":tabn8<CR>", { silent = true, desc = "Tab 8" })
+vim.keymap.set("n", "<C-w>9", ":tabn9<CR>", { silent = true, desc = "Tab 9" })
 
 -- terminal
 vim.keymap.set("n", "<C-w>E", ":vs | te<CR>a", { silent = true, desc = "T[E]rminal (right)" })
@@ -127,6 +134,7 @@ vim.keymap.set("n", "<leader>gL", "<cmd>diffget //3<CR>", { silent = true, desc 
 -- the normal single file diff split
 vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR><C-w>l", { silent = true, desc = "[G]it [D]iff" })
 vim.keymap.set("n", "<leader>gg", ":diffget<CR>", { silent = true, desc = "[G]it Diff[G]et" })
+vim.keymap.set({"n", "v"}, "<leader>gp", ":diffput<CR>", { silent = true, desc = "[G]it Diff[P]ut" })
 -- send all git diffs to quickfix list
 vim.keymap.set("n", "<leader>gq", "<cmd>Git difftool<CR>", { desc = "[G]it Diffs -> [Q]uickfix" });
 
@@ -154,20 +162,26 @@ vim.keymap.set('n', '<leader>gS', require('telescope.builtin').git_stash, { desc
 vim.keymap.set('n', '<leader>sf', function() require('telescope.builtin').oldfiles({ only_cwd = true }) end,
   { desc = "Old [F]iles" })
 
-vim.keymap.set("n", "gh", function() require('gitsigns').nav_hunk('next', { wrap = false }) end,
+vim.keymap.set("n", "gh", function()
+    require('gitsigns').nav_hunk('next', { wrap = false })
+    vim.api.nvim_feedkeys("zz", "n", false)
+  end,
   { silent = true, desc = "[H]unk" })
-vim.keymap.set("n", "gH", function() require('gitsigns').nav_hunk('prev', { wrap = false }) end,
+vim.keymap.set("n", "gH", function()
+    require('gitsigns').nav_hunk('prev', { wrap = false })
+    vim.api.nvim_feedkeys("zz", "n", false)
+  end,
   { silent = true, desc = "[H]unk" })
 
 -- save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true, desc = "[W]rite" })
-vim.keymap.set("i", "kw", ":w<CR>", { silent = true, desc = "[W]rite" })
+-- vim.keymap.set("i", "kw", "<esc><cmd>w<CR>", { silent = true, desc = "[W]rite" })
 
 -- resize window using shift and arrow keys
-vim.keymap.set("n", "<S-Up>", "<cmd>resize +2<CR>")
-vim.keymap.set("n", "<S-Down>", "<cmd>resize -2<CR>")
-vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
-vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
+vim.keymap.set("n", "<S-Up>", "<cmd>resize +5<CR>")
+vim.keymap.set("n", "<S-Down>", "<cmd>resize -5<CR>")
+vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -5<CR>")
+vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +5<CR>")
 
 vim.keymap.set({ "n", "x" }, "gx", "<cmd>Browse<cr>", { silent = true, desc = "open with gx" })
 
@@ -223,8 +237,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --  the definition of its *type*, not where it was *defined*.
     map('n', '<leader>st', require('telescope.builtin').lsp_type_definitions, '[T]ype')
     map("n", "gl", vim.diagnostic.open_float, "Show Diagostic Error Message")
-    map("n", "gn", vim.diagnostic.goto_next, "[N]ext Diagnostic")
-    map("n", "gp", vim.diagnostic.goto_prev, "[P]revious Diagnostic")
+    map("n", "gn", function()
+      vim.diagnostic.goto_next()
+      vim.api.nvim_feedkeys("zz", "n", false)
+    end, "[N]ext Diagnostic")
+    map("n", "gp", function()
+      vim.diagnostic.goto_prev()
+      vim.api.nvim_feedkeys("zz", "n", false)
+    end, "[P]revious Diagnostic")
     -- Rename the variable under your cursor
     --  Most Language Servers support renaming across files, etc.
     map('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
@@ -234,14 +254,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Opens a popup that displays documentation about the word under your cursor
     --  See `:help K` for why this keymap
 
-    -- format entire doc when in normal mode, or only format selection
-    map({ "n", "v" }, "<leader>f", vim.lsp.buf.format, "[F]ormat")
+    -- format selection only, never format entire document!
+    map({ "v" }, "<leader>f", vim.lsp.buf.format, "[F]ormat")
 
     map('n', 'gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
     map('n', '<C-w>d', function()
       vim.cmd('vsplit')
       require('telescope.builtin').lsp_definitions()
-    end, "Split and Definition")
+      end, "Split and Definition")
+    -- FIXME: split and go do definition in new tab does not work
+    map('n', '<C-w>D', function()
+      vim.cmd('vsplit')
+      require('telescope.builtin').lsp_definitions()
+      vim.api.nvim_feedkeys('<C-w>T', 'n', false) -- TEST:
+      end, "new tab and definition")
 
     -- NOTE: This is not Goto Definition, this is Goto Declaration.
     --  For example, in C this would take you to the header
@@ -250,8 +276,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', ']d', vim.diagnostic.goto_next, '[D]iagnostic')
     map('n', '[d', vim.diagnostic.goto_prev, '[D]iagnostic')
     -- TEST:
-    map('n', '<leader>nd', vim.diagnostic.goto_next, '[D]iagnostic')
-    map('n', '<leader>Nd', vim.diagnostic.goto_prev, '[D]iagnostic')
+    -- map('n', '<leader>nd', vim.diagnostic.goto_next, '[D]iagnostic') // use gn and gN
+    -- map('n', '<leader>Nd', vim.diagnostic.goto_prev, '[D]iagnostic')
     -- NOTE: on mac, can use <C-H> for backspace can get by without mapping backspace?
     map("i", "<C-h>", vim.lsp.buf.signature_help, "Signature [H]elp")
 
@@ -280,10 +306,10 @@ vim.keymap.set("n", "<leader>E", ":NvimTreeToggle<CR>", { silent = true, desc = 
 vim.keymap.set("n", "<leader>i", function() require("harpoon"):list():add() end, { desc = "Harpoon F[I]le" })
 vim.keymap.set("n", "<leader>e", function() require("harpoon").ui:toggle_quick_menu(require('harpoon'):list()) end,
   { desc = "Harpoon" })
-vim.keymap.set("n", "<C-j>", function() require("harpoon"):list():select(1) end)
-vim.keymap.set("n", "<C-k>", function() require("harpoon"):list():select(2) end)
-vim.keymap.set("n", "<C-l>", function() require("harpoon"):list():select(3) end)
-vim.keymap.set("n", "<C-h>", function() require("harpoon"):list():select(4) end)
+vim.keymap.set("n", "<C-j>", function() require("harpoon"):list():select(1) end, { desc = "Jump to Harpoon 1" })
+vim.keymap.set("n", "<C-k>", function() require("harpoon"):list():select(2) end, { desc = "Jump to Harpoon 2" })
+vim.keymap.set("n", "<C-l>", function() require("harpoon"):list():select(3) end, { desc = "Jump to Harpoon 3" })
+vim.keymap.set("n", "<C-h>", function() require("harpoon"):list():select(4) end, { desc = "Jump to Harpoon 4" })
 
 -- Trouble
 vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>",
@@ -304,10 +330,9 @@ vim.keymap.set('n', '<F10>', function() require('dap').step_over() end, { desc =
 vim.keymap.set('n', '<F11>', function() require('dap').step_into() end, { desc = "Step Into" })
 vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, { desc = "Step Out" })
 vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, { desc = "[B]reakpoint Add" })
-vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint Condition: ')) end,
-  { desc = "[C]onditional Breakpoint" })
-vim.keymap.set('n', '<leader>dr', function() require('dapui').open({ reset = true, silent = true }) end,
-  { desc = "[D]apUI [R]eset" })
+vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint Condition: ')) end, { desc = "[C]onditional Breakpoint" })
+vim.keymap.set('n', '<Leader>dc', function() require('dap').clear_breakpoints() end, { desc = "[C]lear All Breakpoints" })
+vim.keymap.set('n', '<leader>dr', function() require('dapui').open({ reset = true, silent = true }) end, { desc = "[D]apUI [R]eset" })
 vim.keymap.set('n', '<Leader>dt', function() require('dap').terminate() end, { desc = "[D]ap [T]erminate" })
 vim.keymap.set('n', '<Leader>dm',
   function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
@@ -388,3 +413,25 @@ vim.keymap.set('n', 'diq', 'di"');
 -- sessions
 vim.keymap.set('n', '<leader>SS', ':mksession!<CR>', { desc = "[S]ave" }) -- ! to overwrite file if exists, file ommitted, "Session.vim" is used
 vim.keymap.set('n', '<leader>SL', ':source Session.vim<CR>', { desc = "[L]oad Session" })
+
+-- generate docs
+vim.keymap.set("n", "<leader>nd", ":lua require('neogen').generate()<CR>", { desc = "[D]oxygen" })
+
+-- markview
+vim.keymap.set("n", "<leader>mt", ":Markview toggle<CR>", { desc = "[T]oggle Markview" })
+
+-- quickfix
+vim.keymap.set("n", "<leader>lq", ":copen<CR>", { desc = "[Q]uickFix List" })
+vim.keymap.set("n", "<leader>lo", ":lopen<CR>", { desc = "[L]oclist" })
+
+-- slime
+vim.keymap.set("n", "<C-c><C-l>", ":SlimeSendCurrentLine<CR>", { desc = "Slime Send [L]ine" })
+vim.keymap.set("n", "<C-c><C-f>", ":%SlimeSend<CR>", { desc="Slime Send Entire [F]ile" })
+
+-- copilot
+vim.keymap.set('i', '<C-y>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+vim.g.copilot_no_tab_map = true
+vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)')
+
+vim.keymap.set('n', '{', '{zz', {silent=true})
+vim.keymap.set('n', '}', '}zz', {silent=true})

@@ -20,7 +20,7 @@ wk.add({
   { "<leader>d",  group = "[D]ap/[D]adbod" },
   { "<leader>g",  group = "[G]it" },
   { "<leader>gt", group = "[T]oggle" },
-  { "<leader>l",  group = "[L]sp" },
+  { "<leader>l",  group = "[L]ists" },
   { "<leader>m",  group = "[M]arkdown" },
   { "<leader>p",  group = "[P]aste" },
   { "<leader>r",  group = "[R]ename" },

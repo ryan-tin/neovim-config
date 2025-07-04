@@ -23,13 +23,13 @@ require('kanagawa').setup({
       MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
       -- Borderless, block like modern Telescope UI
-      TelescopeTitle = { fg = theme.ui.special, bold = true },
-      TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-      TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-      TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-      TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-      TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-      TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+      -- TelescopeTitle = { fg = theme.ui.special, bold = true },
+      -- TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+      -- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+      -- TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+      -- TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+      -- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+      -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 
       -- Dark completion (popup menu)
       Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },   -- add `blend = vim.o.pumblend` to enable transparency
@@ -50,9 +50,12 @@ require('kanagawa').setup({
 })
 
 
+-- vim.cmd.colorscheme('rusticated')
 vim.cmd.colorscheme('kanagawa-dragon')
+-- vim.cmd.colorscheme('kanagawa-lotus')
 -- vim.cmd.colorscheme('kanagawa-wave')
 -- vim.cmd.colorscheme('nightfox')
 -- vim.cmd.colorscheme('terafox')
+-- vim.cmd.colorscheme('dayfox')
 -- vim.cmd.colorscheme('nordfox')
 -- vim.cmd.colorscheme('tokyonight-night')

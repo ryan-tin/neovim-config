@@ -41,6 +41,7 @@ local plugins = {
   },
   'mbbill/undotree',
   'tpope/vim-fugitive',
+  -- 'airblade/vim-gitgutter', -- to stage/undo stage from diff file
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -81,7 +82,6 @@ local plugins = {
       },
     },
   },
-  -- skill issue? Learn to type
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
@@ -123,7 +123,7 @@ local plugins = {
       library = { plugins = { "nvim-dap-ui" }, types = true },
     }
   },
-  { 'folke/trouble.nvim',        opts = { signs = {} } },
+  -- { 'folke/trouble.nvim',        opts = { signs = {} } },
   {
     'folke/which-key.nvim',
     dependencies = {
@@ -147,9 +147,12 @@ local plugins = {
         "mtime",
       },
       delete_to_trash = true,
+      keymaps = {
+        ["yp"] = { "actions.yank_entry", mode = "n" },
+      },
       view_options = {
         -- Show files and directories that start with "."
-        show_hidden = true,
+        show_hidden = false,
         -- This function defines what is considered a "hidden" file
         is_hidden_file = function(name, bufnr)
           return vim.startswith(name, ".")
@@ -161,13 +164,24 @@ local plugins = {
     "folke/zen-mode.nvim",
     opts = {
       window = {
-        width = 160,
+        backdrop = 1,
+        width = 120
       },
+      plugins = {
+        tmux = { enabled = true },
+        alacritty = {
+          enabled = true,
+          font = "25", -- font size
+        },
+      },
+      on_open = function(win)
+         vim.api.nvim_set_hl(0, "ZenBg", { bg = "NONE" }) -- transparent backdrop
+      end,
     }
   },
   { 'nvim-lualine/lualine.nvim', },
-  -- "github/copilot.vim", -- trial expired
-  -- { 'jpalardy/vim-slime' },
+  { "github/copilot.vim" },
+  { 'jpalardy/vim-slime' },
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",
@@ -181,31 +195,27 @@ local plugins = {
     end,
   },
   -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   event = "VeryLazy"
-  -- },
-  -- {
   --   "goolord/alpha-nvim",
   --   dependencies = {
   --     "nvim-tree/nvim-web-devicons",
   --     'nvim-lua/plenary.nvim'
   --   }
   -- },
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,                      -- Recommended
-    opts = {
-      modes = { "n", "no", "c", "i" }, -- Change these modes to what you need
-      hybrid_modes = { "n", "i" },     -- Uses this feature on normal mode
-      -- This is nice to have
-      callbacks = {
-        on_enable = function(_, win)
-          vim.wo[win].conceallevel = 2;
-          vim.wo[win].concealcursor = "c";
-        end
-      }
-    }
-  },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   lazy = false,                      -- Recommended
+  --   opts = {
+  --     modes = { "n", "no", "c", "i" }, -- Change these modes to what you need
+  --     hybrid_modes = { "n", "i" },     -- Uses this feature on normal mode
+  --     -- This is nice to have
+  --     callbacks = {
+  --       on_enable = function(_, win)
+  --         vim.wo[win].conceallevel = 2;
+  --         vim.wo[win].concealcursor = "c";
+  --       end
+  --     }
+  --   }
+  -- },
   -- SQL
   {
     'kristijanhusak/vim-dadbod-ui',
@@ -237,32 +247,117 @@ local plugins = {
   -- },
   -- COLORSCHEMES
   { 'rebelot/kanagawa.nvim', },
-  {
-    "EdenEast/nightfox.nvim",
-    opts = {} -- setup must be called before loading
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
   -- {
-  --   "robitx/gp.nvim",
-  --   config = function()
-  --     local conf = {
-  --       -- For customization, refer to Install > Configuration in the Documentation/Readme
-  --     }
-  --     require("gp").setup(conf)
-  --
-  --     -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
-  --   end,
+  --   "EdenEast/nightfox.nvim",
+  --   opts = {} -- setup must be called before loading
   -- },
-  -- NOTE: cannot get this to work with termguicolors... its set...
   -- {
-  --   "norcalli/nvim-colorizer.lua",
-  --   opts = {}
-  -- }
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  -- },
+  -- COLORSCHEMES end
+  -- {
+  --   "danymat/neogen", -- doxygen for cpp documentation
+  --   config = true,
+  --   -- Uncomment next line if you want to follow only stable versions
+  --   version = "*",
+  --   opts = {
+  --     snippet_engine = "luasnip"
+  --   }
+  -- },
+  {
+    "nvimtools/hydra.nvim",
+  },
+  {
+    "lervag/vimtex",
+    lazy = false,     -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "skim"
+    end
+    -- # Starting Skim as the pdf viewer
+    -- in a .tex file, start compilation with `<leader>ll`
+    -- then open the viewer with `:VimtexView` `<leader>lv`
+    -- # jump to location
+    -- in the text file, use command `<leader>v` to jump to location in pdf
+    -- # jump to pdf location
+    -- to do inverse search (`cmd + shift + left click` on location in skim pdf to go to)
+  },
+  -- AI
+  {
+    "yetone/avante.nvim",
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    -- ⚠️ must add this setting! ! !
+    build = function()
+      -- conditionally use the correct build system for the current OS
+      if vim.fn.has("win32") == 1 then
+        return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+      else
+        return "make"
+      end
+    end,
+    event = "VeryLazy",
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      -- add any opts here
+      -- for example
+      provider = "copilot",
+      -- providers = {
+      --   claude = {
+      --     endpoint = "https://api.anthropic.com",
+      --     model = "claude-sonnet-4-20250514",
+      --     timeout = 30000, -- Timeout in milliseconds
+      --     extra_request_body = {
+      --       temperature = 0.75,
+      --       max_tokens = 20480,
+      --     },
+      --   },
+      -- },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      -- "echasnovski/mini.pick",       -- for file_selector provider mini.pick
+      -- "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      -- "hrsh7th/nvim-cmp",            -- autocompletion for avante commands and mentions
+      -- "ibhagwan/fzf-lua",            -- for file_selector provider fzf
+      -- "stevearc/dressing.nvim",      -- for input provider dressing
+      -- "folke/snacks.nvim",           -- for input provider snacks
+      -- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      -- "zbirenbaum/copilot.lua",      -- for providers='copilot'
+      -- {
+      --   -- support for image pasting
+      --   "HakonHarnes/img-clip.nvim",
+      --   event = "VeryLazy",
+      --   opts = {
+      --     -- recommended settings
+      --     default = {
+      --       embed_image_as_base64 = false,
+      --       prompt_for_file_name = false,
+      --       drag_and_drop = {
+      --         insert_mode = true,
+      --       },
+      --       -- required for Windows users
+      --       use_absolute_path = true,
+      --     },
+      --   },
+      -- },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  }
 }
 
 local opts = {}

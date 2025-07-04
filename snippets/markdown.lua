@@ -1,4 +1,7 @@
 return {
+  s({ trig = "bold", desc="bold font"}, {
+    t("**"), i(1), t("**"), i(0)
+  }),
   s({ trig = "template bug", desc = "template for new bug task" }, {
     t("Date Created: "), t(vim.fn.strftime('%a %d %b %Y')),
     t({
@@ -41,5 +44,10 @@ return {
   s({ trig = "note", desc = "note block" }, {
     t({ "> [!NOTE]",
       "> " }), i(1)
+  }),
+  s({ trig = "code block", desc = "code block" }, {
+    t({ "```"}), i(1),
+    t({"",""}),
+      t({"```" }), i(0)
   })
 }

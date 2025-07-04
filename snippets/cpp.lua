@@ -1,4 +1,14 @@
 return {
+  s({ trig = "today", desc = "today's date" }, { t(vim.fn.strftime('%a %d %b %Y')) }),
+  s({ trig = "comment line break", desc = "comment line break" }, {
+    t({
+      "// =============================================================================",
+      "// ============================================================================="
+    })
+  }),
+  s({ trig = "ifdef", desc = "ifdef macro" }, {
+    t("#ifdef "), i(1), t(""), i(2), t({"", "#endif"})
+  }),
   s({ trig = "maybe unused", desc = "maybe unused attribute" }, {
     t("[[maybe_unused]]")
   }),

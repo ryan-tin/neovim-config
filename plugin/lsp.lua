@@ -1,5 +1,6 @@
 local lsp = require("lsp-zero")
 local cmp = require('cmp')
+local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
 lsp.preset("recommended")
 
@@ -24,22 +25,23 @@ local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls()) -- Configure lua language server for neovim
 
 -- see pyright docs for more info on these settings
-lspconfig.pyright.setup({
-  -- on_attach = on_attach,
-  settings = {
-    pyright = {
-      autoImportCompletion = true,
-    },
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = 'workspace', -- analyze/report errors for all files, can also be 'openFilesOnly'
-        useLibraryCodeForTypes = true,
-        jtypeCheckingMode = 'off'
-      }
-    }
-  }
-})
+lspconfig.pyright.setup({}) -- TEST: default settings
+-- lspconfig.pyright.setup({
+--   -- on_attach = on_attach,
+--   settings = {
+--     pyright = {
+--       autoImportCompletion = true,
+--     },
+--     python = {
+--       analysis = {
+--         autoSearchPaths = true,
+--         diagnosticMode = 'workspace', -- analyze/report errors for all files, can also be 'openFilesOnly'
+--         useLibraryCodeForTypes = true,
+--         jtypeCheckingMode = 'off'
+--       }
+--     }
+--   }
+-- })
 
 lspconfig.marksman.setup({})
 
@@ -50,7 +52,10 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     lspconfig.clangd.setup {
       init_options = {
-        fallbackFlags = { '--std=c++23' } -- need this to tell clangd what version of cpp
+        fallbackFlags = {
+          '--std=c++23', -- need this to tell clangd what version of cpp
+          '--offset-encoding=utf-16',
+        }
         -- alternatively, set at the project level using compile_flags.txt or compile_commands.json in the project directory
       },
       IndentPPDirectives = "AfterHash"
@@ -113,14 +118,21 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     -- ['<C-j>'] = cmp.mapping.confirm({ select = true }),
     -- Ctrl+Space to trigger completion menu
-    ['<C-e>'] = cmp.mapping.complete(),
-    ['<C-x>'] = cmp.mapping.close(),
+    ['<C-e>'] = function() -- toggle completion menu with a single key
+      if cmp.visible() then
+        cmp.close()
+      else
+        cmp.complete()
+      end
+    end,
     -- move through cmp menu
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     -- scroll popup documentation
-    ['<C-f>'] = cmp.mapping.scroll_docs(1),
-    ['<C-b>'] = cmp.mapping.scroll_docs(-1),
+    -- HACK: disabled this because im using <C-f> and <C-b> to move -> and <- in insert mode
+    -- TODO: find a new mapping for this!
+    -- ['<C-f>'] = cmp.mapping.scroll_docs(1),
+    -- ['<C-b>'] = cmp.mapping.scroll_docs(-1),
     -- Navigate between snippet placeholder, <C-f>/<C-b> also works
     ['<C-j>'] = cmp.mapping(function()
       if ls.expand_or_locally_jumpable() then
@@ -133,6 +145,23 @@ cmp.setup({
       end
     end, { 'i', 's' }),
     -- disable completion with tab (helps with copilot setup)
+    -- NOTE: not using copilot rn
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      local copilot_keys = vim.fn["copilot#Accept"]("")
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif copilot_keys ~= "" then
+        vim.api.nvim_feedkeys(copilot_keys, "i", false)
+      -- elseif luasnip.expandable() then // TEST: no luasnip in lsp file
+      --   luasnip.expand()
+      -- elseif luasnip.expand_or_jumpable() then
+      --   luasnip.expand_or_jump()
+      -- elseif check_backspace() then
+      --   fallback()
+      else
+        fallback()
+      end
+    end, { "i", "s", }),
     -- ['<Tab>'] = vim.NIL,
     -- ['<S-Tab>'] = vim.NIL
   }),

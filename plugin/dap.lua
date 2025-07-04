@@ -40,8 +40,18 @@ dap.configurations.cpp = {
 require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'c', 'cpp', 'objcpp' } })
 
 -- one of these worked, idk which one!
-dap.set_exception_breakpoints({}) -- don't stop on any exceptions
+-- dap.set_exception_breakpoints({}) -- don't stop on any exceptions
 require('dap').defaults.fallback.exception_breakpoints = {}
 require('dap').defaults.cpp.exception_breakpoints = {}
 
 dap.configurations.objcpp = dap.configurations.cpp
+
+-- require("dap").configurations.python = {
+--     type = "python",
+--     request = "launch",
+--     name = "Module",
+--     console = "integratedTerminal",
+--     module = "src", -- edit this to be your app's main module
+--     cwd = "${workspaceFolder}",
+--     -- cwd = vim.fn.getcwd(),
+-- }

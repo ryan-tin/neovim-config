@@ -2,7 +2,7 @@
 -- commenting this out brought the slim cursor back
 
 -- hide command line when its not being used
-vim.opt.cmdheight = 0;
+-- vim.opt.cmdheight = 0;
 
 -- line numbers and relative line numbers activated
 vim.opt.nu = true
@@ -99,7 +99,9 @@ vim.g.have_nerd_font = true
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
--- vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 vim.o.timeout = true
 vim.o.timeoutlen = 500 -- in milliseconds, default 1000
+
+vim.o.laststatus = 3

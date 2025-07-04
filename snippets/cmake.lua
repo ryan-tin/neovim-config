@@ -1,4 +1,7 @@
 return {
+  s({ trig = "build interface", desc = "build interface for include dirs" }, {
+    t("$<BUILD_INTERFACE:"), i(1), t(">")
+  }),
   -- TODO: this template is out of date...
   s({ trig = "template CMakeLists.txt", desc = "template for root CMakeLists.txt" }, {
     t({
