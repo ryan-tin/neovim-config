@@ -112,7 +112,10 @@ cmp.setup({
       ls.lsp_expand(args.body)
     end,
   },
-  completion = { completeopt = 'menu,menuone,noinsert' },
+  completion = {
+    autocomplete = false, -- disable auto-completion, use <C-e> to toggle
+    completeopt = 'menu,menuone,noinsert',
+  },
   mapping = cmp.mapping.preset.insert({
     -- Enter / <C-y> to confirm completion
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
