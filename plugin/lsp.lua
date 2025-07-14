@@ -113,7 +113,7 @@ cmp.setup({
     end,
   },
   completion = {
-    autocomplete = false, -- disable auto-completion, use <C-e> to toggle
+    autocomplete = true,
     completeopt = 'menu,menuone,noinsert',
   },
   mapping = cmp.mapping.preset.insert({
