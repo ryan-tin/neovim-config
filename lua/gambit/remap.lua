@@ -432,6 +432,7 @@ vim.keymap.set("n", "<C-c><C-f>", ":%SlimeSend<CR>", { desc="Slime Send Entire [
 vim.keymap.set('i', '<C-y>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
 vim.g.copilot_no_tab_map = true
 vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)')
+vim.keymap.set('i', '<C-X>', '<Plug>(copilot-dismiss)')
 
 vim.keymap.set('n', '{', '{zz', {silent=true})
 vim.keymap.set('n', '}', '}zz', {silent=true})
