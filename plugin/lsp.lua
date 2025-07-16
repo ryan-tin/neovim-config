@@ -113,7 +113,7 @@ cmp.setup({
     end,
   },
   completion = {
-    autocomplete = true,
+    -- autocomplete = false,
     completeopt = 'menu,menuone,noinsert',
   },
   mapping = cmp.mapping.preset.insert({
