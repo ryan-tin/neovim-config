@@ -8,7 +8,7 @@ return {
   s({trig="template debugging", desc="debugging gitignore template"}, {
     t({
       "### Debugging ###",
-      "vscode/launch.json",
+      ".vscode/launch.json",
     })
   }),
   s({trig="template latex", desc="latex gitignore template"}, {
