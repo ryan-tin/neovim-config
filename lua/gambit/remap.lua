@@ -446,3 +446,6 @@ vim.keymap.set('n', '<leader>W', function()
     print("Line wrap: OFF")
   end
 end, { desc = "Toggle Line [W]rap" })
+
+-- remove whitespace from claude code output
+vim.keymap.set('n', '<leader>rw', ':%s/^\\s\\+$//<CR>', {desc="Remove Whitespace (EmptyLine)"})
