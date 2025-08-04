@@ -1,4 +1,11 @@
 return {
+  s({ trig = "template claude", desc = "claude gitignore template" },
+    t({
+      "### Claude ###",
+      "CLAUDE.md",
+      ".claude/"
+    })
+  ),
   s({trig="template python", desc="python gitignore template"}, 
     t({
       "### Python ###",
