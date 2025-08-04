@@ -436,3 +436,13 @@ vim.keymap.set('i', '<C-X>', '<Plug>(copilot-dismiss)')
 
 vim.keymap.set('n', '{', '{zz', {silent=true})
 vim.keymap.set('n', '}', '}zz', {silent=true})
+
+-- Toggle line wrap
+vim.keymap.set('n', '<leader>W', function()
+  vim.wo.wrap = not vim.wo.wrap
+  if vim.wo.wrap then
+    print("Line wrap: ON")
+  else
+    print("Line wrap: OFF")
+  end
+end, { desc = "Toggle Line [W]rap" })
