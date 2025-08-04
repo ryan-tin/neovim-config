@@ -105,3 +105,5 @@ vim.o.timeout = true
 vim.o.timeoutlen = 500 -- in milliseconds, default 1000
 
 vim.o.laststatus = 3
+
+vim.opt.wrapscan = false -- don't wrap search around the file when using n
