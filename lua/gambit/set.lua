@@ -12,7 +12,7 @@ vim.opt.numberwidth = 1 -- gutter width. small gutters
 vim.opt.colorcolumn = "80"
 
 -- n space indents
-local shiftwidth = 2
+local shiftwidth = 4
 vim.opt.tabstop = shiftwidth
 vim.opt.softtabstop = shiftwidth
 vim.opt.shiftwidth = shiftwidth
